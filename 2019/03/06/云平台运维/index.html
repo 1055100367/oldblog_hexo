@@ -107,19 +107,39 @@ time iaas-install-mysql.sh查看脚本运行时间
 <p><code>nova service-list</code>查询服务列表<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-06 下午7.57.00.png" alt="屏幕快照 2019-03-06 下午7.57.00"></p>
 </li>
 <li><p>使用nova相关命令查询网络的列表信息，以文本形式提交查询命令和结果到答题框。</p>
-<p><code>nova tenant-network-list</code>查询云平台网络状态（我还没创建，所以没有）<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-06 下午7.58.20.png" alt="屏幕快照 2019-03-06 下午7.58.20"></p>
+<p><code>nova tenant-network-list</code>查询云平台网络状态<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-07 上午10.27.49.png" alt="屏幕快照 2019-03-07 上午10.27.49"></p>
 </li>
 <li><p>使用nova相关命令查询nova资源使用情况的信息，以文本形式提交查询命令和结果到答题框。</p>
-<p><code>nova usage-list</code>查询云平台资源使用情况（我还没分配所以是空的，就不截图了)</p>
+<p><code>nova usage-list</code>查询云平台资源使用情况<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-07 上午10.31.23.png" alt="屏幕快照 2019-03-07 上午10.31.23"></p>
 <hr>
 </li>
 </ul>
 </li>
 <li><p><strong>Neutron搭建</strong></p>
 <ul>
-<li><p>使用neutron相关命令查询网络服务的列表信息，并已下图的形式打印出来，将相应的查询命令以及反馈结果以文本形式提交到答题框。</p>
-<p><code>neutron agent-list -c binary -c agent_type -c alive</code>/roo</p>
+<li><p>使用neutron相关命令查询网络服务的列表信息，并已下图的形式打印出来，将相应的查询命令以及反馈结果以文本形式提交到答题框。<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/图片2.png" alt="图片2"></p>
+<p><code>neutron agent-list -c binary -c agent_type -c alive</code>查询网络服务列表中的binary,agent_type,alive信息</p>
 </li>
+<li><p>使用neutron相关命令查询网络服务的列表信息中的“binary”一列，将查询信息以文本形式提交到答题框。</p>
+<p><code>neutron agent-list -c binary</code> 查询网络服务列表中binary信息<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-08 下午2.10.16.png" alt="屏幕快照 2019-03-08 下午2.10.16"></p>
+</li>
+<li><p>使用neutron相关命令查询网络服务DHCP agent的详细信息，将相应的查询命令以及反馈结果以文本形式提交到答题框。</p>
+<p><code>neutron agent-list</code>查询网络服务详细信息</p>
+<p><img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-08 下午2.13.44.png" alt="屏幕快照 2019-03-08 下午2.13.44"></p>
+<p><code>neutron agent-show 457e60ff-a312-49ae-b830-0ecb3cd7e9bc</code> 查询DHCP agent详细信息<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-08 下午2.20.07.png" alt="屏幕快照 2019-03-08 下午2.20.07"></p>
+</li>
+<li><p>使用ovs-vswitchd管理工具的相关命令查询计算节点的网桥列表信息，将查询命令及反馈信息以文本形式提交到答题框。</p>
+<p><code>ovs-vsctl list bridge</code>查看计算节点网桥信息<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-08 下午2.21.14.png" alt="屏幕快照 2019-03-08 下午2.21.14"></p>
+<p><code>ovs-vsctl list-br</code>查看网桥列表<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-08 下午2.22.41.png" alt="屏幕快照 2019-03-08 下午2.22.41"></p>
+</li>
+<li><p>使用ovs-vswitchd管理工具的相关命令查询控制节点的网桥br-ex的端口列表信息，将查询命令及反馈信息以文本形式提交到答题框。</p>
+<p><code>ovs-vsctl list-ports br-ex</code>查询控制节点的网桥br-ex的端口列表信息<img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-08 下午2.23.49.png" alt="屏幕快照 2019-03-08 下午2.23.49"></p>
+</li>
+<li><p>使用neutron相关命令查询所创建路由器的详细信息，将查询命令和结果以文本形式提交到答题框。</p>
+<p><code>neutron router-list</code>查询路由详情</p>
+<p><img src="/Users/zhboat/Desktop/blog/public/images/ScreenShot/屏幕快照 2019-03-08 下午2.26.03.png" alt="屏幕快照 2019-03-08 下午2.26.03"></p>
+</li>
+<li></li>
 </ul>
 </li>
 </ol>
