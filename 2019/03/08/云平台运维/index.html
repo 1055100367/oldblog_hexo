@@ -198,6 +198,21 @@ time iaas-install-mysql.sh查看脚本运行时间
 </ol>
 <hr>
 <ol start="7">
-<li><strong>Trove搭建</strong><br>- </li>
+<li><p><strong>Trove搭建</strong></p>
+<ul>
+<li><p>在控制节点上传提供的MySQL_5.6_XD.qcow2到系统内，并创建mysql的数据库存储类型，使用上传的镜像更新该数据库类型的版本信息和镜像信息，将以上操作命令及结果填入答题框。</p>
+<p><strong>以下命令在/usr/local/bin/iaas-install-trove.sh最后七行有</strong></p>
+<p><code>glance image-create --name &quot;mysql-5.6&quot; --disk-format qcow2  --container-format bare --progress &lt;  /opt/iaas-repo/images/MySQL_5.6_XD.qcow2</code>上传MySql镜像</p>
+<p><code>trove-manage datastore_update mysql &#39;&#39;</code>更新数据库存储类型</p>
+<p><code>Glance_Image_ID=$(glance image-list | awk &#39;/ mysql-5.6 / { print $2 }&#39;) &amp;&amp; trove-manage datastore_version_update mysql mysql-5.6 mysql ${Glance_Image_ID} &#39;&#39; 1</code>截取mysql镜像ID并定义变量,更新版本信息</p>
+<p><code>FLAVOR_ID=$(openstack flavor list | awk &#39;/ m1.small / { print $2 }&#39;) &amp;&amp; trove create mysql-1  ${FLAVOR_ID} --size 5 --databases myDB --users user:r00tme --datastore_version mysql-5.6 --datastore mysql</code>截取云主机类型ID并定义变量,更新镜像信息</p>
+<p><img src="/images/ScreenShot/屏幕快照 2019-03-11 下午2.48.33.png" alt="屏幕快照 2019-03-11 下午2.48.33"></p>
+<p><code>trove list</code>查看列表</p>
+</li>
+<li><p>在控制节点查创建名称为mysql-1，大小为5G，数据库名称为myDB、远程连接用户为user,密码为r00tme，类型为m1.small完成后查询trove列表信息，并查询mysql-1的详细信息，将以上操作命令及结果填入答题框。</p>
+<p><code>trove show mysql-1</code></p>
+</li>
+</ul>
+</li>
 </ol>
 </div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-03-08</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://yoursite.com/2019/03/08/云平台运维/,随记,云平台运维,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/03/07/云平台-创建云主机/" title="云平台&amp;创建云主机">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
