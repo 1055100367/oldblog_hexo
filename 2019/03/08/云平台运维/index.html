@@ -204,13 +204,16 @@ time iaas-install-mysql.sh查看脚本运行时间
 <p><strong>以下命令在/usr/local/bin/iaas-install-trove.sh最后七行有</strong></p>
 <p><code>glance image-create --name &quot;mysql-5.6&quot; --disk-format qcow2  --container-format bare --progress &lt;  /opt/iaas-repo/images/MySQL_5.6_XD.qcow2</code>上传MySql镜像</p>
 <p><code>trove-manage datastore_update mysql &#39;&#39;</code>更新数据库存储类型</p>
-<p><code>Glance_Image_ID=$(glance image-list | awk &#39;/ mysql-5.6 / { print $2 }&#39;) &amp;&amp; trove-manage datastore_version_update mysql mysql-5.6 mysql ${Glance_Image_ID} &#39;&#39; 1</code>截取mysql镜像ID并定义变量,更新版本信息</p>
-<p><code>FLAVOR_ID=$(openstack flavor list | awk &#39;/ m1.small / { print $2 }&#39;) &amp;&amp; trove create mysql-1  ${FLAVOR_ID} --size 5 --databases myDB --users user:r00tme --datastore_version mysql-5.6 --datastore mysql</code>截取云主机类型ID并定义变量,更新镜像信息</p>
-<p><img src="/images/ScreenShot/屏幕快照 2019-03-11 下午2.48.33.png" alt="屏幕快照 2019-03-11 下午2.48.33"></p>
+<p><code>Glance_Image_ID=$(glance image-list | awk &#39;/ mysql-5.6 / { print $2 }&#39;) &amp;&amp; trove-manage datastore_version_update mysql mysql-5.6 mysql ${Glance_Image_ID} &#39;&#39; 1</code>截取mysql镜像ID并定义变量,更新版本信息及镜像信息</p>
 <p><code>trove list</code>查看列表</p>
 </li>
 <li><p>在控制节点查创建名称为mysql-1，大小为5G，数据库名称为myDB、远程连接用户为user,密码为r00tme，类型为m1.small完成后查询trove列表信息，并查询mysql-1的详细信息，将以上操作命令及结果填入答题框。</p>
-<p><code>trove show mysql-1</code></p>
+<p><code>FLAVOR_ID=$(openstack flavor list | awk &#39;/ m1.small / { print $2 }&#39;) &amp;&amp; trove create mysql-1  ${FLAVOR_ID} --size 5 --databases myDB --users user:r00tme --datastore_version mysql-5.6 --datastore mysql</code>截取云主机类型ID并定义变量,更新镜像信息</p>
+<p><img src="/images/ScreenShot/屏幕快照 2019-03-11 下午2.48.33.png" alt="屏幕快照 2019-03-11 下午2.48.33"></p>
+<p><code>trove show mysql-1</code>查询mysql-1的详细信息</p>
+</li>
+<li><p>在控制节点查询所有数据的版本信息，完成后查询mysql数据库的详细信息，将以上操作命令及结果填入答题框。</p>
+<p><code>rove datastore-list</code>查询mysql详细信息</p>
 </li>
 </ul>
 </li>
