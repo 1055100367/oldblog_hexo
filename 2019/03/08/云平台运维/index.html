@@ -334,10 +334,13 @@ ho"><meta name="keywords" content="Hexo,HTML,android,Linux"><meta content="width
 <p><code>sed &#39;s/64/256/g&#39; /etc/sysconfig/memcached -i</code> 修改缓存为256</p>
 <p><code>cat /etc/sysconfig/memcache</code></p>
 <p><code>ps aux |grep memcache</code>查看修改后的进程信息</p>
-<p><img src="/Users/zhboat/Library/Application Support/typora-user-images/image-20190316202009780.png" alt="image-20190316202009780"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g16ywdf5dij310x08gq8w.jpg" alt></p>
 </li>
 </ul>
+<hr>
 </li>
+</ol>
+<ol start="3">
 <li><p>Mysql简单题**</p>
 <ul>
 <li><p>使用数据库的相关命令查询数据库的编码方式，将查询结果以文本形式提交到答题框中。</p>
@@ -362,7 +365,51 @@ ho"><meta name="keywords" content="Hexo,HTML,android,Linux"><meta content="width
 <li><p>MySQL困难题</p>
 <ul>
 <li><p>进入数据库keystone，通过user表和local_user表做联合更新，u用来做user表别名，lu用来做local_user表别名，sql语句更新neutron用户的enabled状态为0, 更新语句中user表在local_user前面。 将sql语句，以文本形式提交到答题框。</p>
-<p><code></code></p>
+<p><code>use keystone;</code>使用keystone库</p>
+<p><code>select enabled from user as u,local_user as lu where u.id=lu.user_id and lu.name=&quot;neutron&quot;;</code>user表取别名u,local_user取别名lu,联合查询user表和local_user表的neutron用户enabled状态</p>
+<p><code>update user as u,local_user as lu set u.enabled=&quot;0&quot; where u.id=lu.user_id and lu.name=&quot;neutron&quot;;</code>更新user和local_user表的enabled状态为1</p>
+<p><code>select enabled from user as u,local_user as lu where u.id=lu.user_id and lu.name=&quot;neutron&quot;;</code>user表取别名u,local_user取别名lu,联合查询user表和local_user表的neutron用户更新后的enabled状态</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1705kdzicj30oq0gstfo.jpg" alt></p>
+</li>
+<li><p>进入数据库keystone，通过user表和local_user表做联合查询，u用来做user表别名，lu用来做local_user表别名，两表联合查询nova用户的enabled状态,查询语句中user表在local_user前面。将所有操作命令及反馈结果提交到答题框。</p>
+<p><code>use keystone;</code>使用keystone库</p>
+<p><code>select enabled from user as u,local_user as lu where u.id=lu.user_id and lu.name=&quot;nova&quot;</code>user表取别名u,local_user取别名lu,联合查询Nova用户enabled状态</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g170ad0t70j30ru0jw10q.jpg" alt></p>
+</li>
+<li><p>进入数据库，创建本地用户examuser，密码为000000，然后查询mysql数据库中的user表的host，user，password字段。最后赋予这个用户所有数据库的“查询”“删除”“更新”“创建”的本地权限。以文本形式提交以上操作命令到答题框。</p>
+<p><code>use mysql;</code>使用mysql库</p>
+<p><code>insert into mysql.user(host,user,Password) values(&quot;localhost&quot;,&quot;examuser&quot;,Password(&quot;000000&quot;));</code>创建本地用户,用户名为examuser,密码为000000</p>
+<p><code>select host,user,password from user;</code></p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g173jcgwvjj30ru0jwtk2.jpg" alt></p>
+<p><code>grant select,delete,update,create on *.* to examuser@&quot;localhost&quot; identified by &quot;000000&quot;</code> 赋予examuser用户查询,删除,更新,创建的本地权限</p>
+</li>
+<li><p>登录 iaas 云主机，登录 mysql 数据库，使用 keystone 数据库，查询本地用户表中的所有信息，并按照 id 的降序排序。将以上所有的操作命令及返回结果以文本形式提交到答题框。（关于数据库的命令均使用小写） </p>
+<p><code>use keystone;</code>使用keystone库</p>
+<p><code>select * from user order by id desc;</code>以降序查看id表中所有信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g173shvaxej30ru0jwwoa.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li><strong>MongoDB运维</strong><ul>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，查看数据库，使用 ceilometer数据库，查看此数据库下的集合，并查询此数据库用户，最后创建一个数据库并查询。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据，最后查询特定的一类数据。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据，插入完毕后，数据进行修改，修改完后，查询修改完的数据。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据（其中某一条数据插入两遍），插入数据完毕后，发现某条数据多插入了一遍需要删除，请使用命令删除多余的一行数据，最后将数据库删除。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据，插入完毕后，查询集合中的数据并按照某关键字的升序排序，将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中批量插入多条数据，使用 for 循环，定义变量 i=1，插入”_id” : i，”name” : “xiaoming”， “age” : “21”。插入数据完毕后，统计集合中的数据条数，然后查询集合中满足特定条件的结果。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，使用 mongoimport 命令，将给定的文件，导入至 MongoDB下的相应数据库中的指定集合中。导入后登录 MongoDB 数据库。查询集合中满足特的条件的结果。将上述所有操作命令及返回结果以文本形式提交到答题框。注：PPG–场均得分；PTS–总得分；FG%–投篮命中率；3P%–三分命中率；MPG–平均上场时间</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="6">
+<li><p><strong>Keystone简单题</strong></p>
+<ul>
+<li><p>在keystone中创建用户testuser，密码为password，以文本形式提交以上操作命令到答题框。</p>
+<p><code>source /etc/keystone/admin-openrc.sh</code></p>
 </li>
 </ul>
 </li>
