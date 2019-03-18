@@ -284,10 +284,87 @@ ho"><meta name="keywords" content="Hexo,HTML,android,Linux"><meta content="width
 <hr>
 <p><strong>任务二、IaaS云平台运维</strong></p>
 <ol>
-<li>Rabbitmq简单题<ul>
-<li></li>
+<li><p><strong>Rabbitmq简单题</strong></p>
+<ul>
+<li><p>按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。</p>
+<p>云主机： </p>
+<p>（1）名称：IaaS</p>
+<p>（2）镜像文件：Xiandian-IaaS-All.qcow2</p>
+<p>（3）云主机类型：4cpu、8G内存、100G硬盘</p>
+<p>（4）网络：网络1：int-net1，绑定浮动IP</p>
+</li>
+</ul>
+<p>​            网络2：int-net2</p>
+<p>​    <strong>注：该镜像已安装IaaS平台所有可能使用的组件，用于完成IaaS平台相    关运维操作题，必须按以上配置信息配置接入两个网络才能保证云主机运    行正常。</strong></p>
+<p>​    根据题目要求，连接相应的云主机或各节点服务器，进行以下答题。 </p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKly1g14tv58sr0j30ue0k6gol.jpg" alt></p>
+<ul>
+<li><p>使用rabbitmqctl创建用户xiandian-admin，密码为admin。将以上所有操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl add_user xiandian-admin admin</code>创建用户xiandian-admin,密码为admin</p>
+</li>
+<li><p>使用rabbitmqctl命令查询所有用户列表，将以上所有操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl list_users</code>查询所有用户列表</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14um788owj30pc0gsq9g.jpg" alt></p>
+</li>
+<li><p>使用命令对xiandian-admin用户进行授权，对本机所有资源可写可读权限。</p>
+<p><code>rabbitmqctl set_permissions xiandian-admin &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code>给xiandian-admin用户对本机所有资源的读写授权</p>
+</li>
+<li><p>使用rabbitmqctl命令查询集群状态，将操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl cluster status</code>查询集群状态</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14undy4tgj30pc0gs0zc.jpg" alt></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Rabbitmq困难题</strong></p>
+<ul>
+<li><p>使用命令给xiandian-admin用户创建administrator角色，并查询，将以上所有操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl set_user_tags xiandian-admin amdinistrator</code>设置xiandian-admin用户为administrator</p>
+<p><code>rabbitmqctl list_users</code>查询所有用户</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14uvdk7gcj30pc0gstex.jpg" alt></p>
+</li>
+<li><p>使用命令对用户xiandian-admin进行授权，对本机所有资源可写可读权限，然后查询xiandian-admin用户的授权信息，将操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl set_permissions xiandian-admin &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code>给xiandian-admin用户对本机所有资源的读写授权</p>
+<p><code>rabbitmqctl list_user_permissions xiandian-admin</code>查询xiandian-admin用户的权限</p>
+</li>
+<li><p>使用rabbitmqctl命令，查看队列信息，所包含的信息包括name，arguments，messages，memory。</p>
+<p><code>rabbitmqctl list_queues name arguments messages memory</code></p>
+</li>
+<li><p>通过修改配置文件的方式使memcache的缓存有64MB变为256MB，使用ps相关命令查询memcahce(笨比题目…..)进程的信息，将修改的配置文件全路径文件名、修改的参数以及相应的参数值、查询到的memcache进程信息以文本形式提交到答题框中。</p>
+<p><code>ps aux |grep memcache</code>查看没修改前的进程信息</p>
+<p><code>sed &#39;s/64/256/g&#39; /etc/sysconfig/memcached -i</code> 修改缓存为256</p>
+<p><code>cat /etc/sysconfig/memcache</code></p>
+<p><code>ps aux |grep memcache</code>查看修改后的进程信息</p>
+<p><img src="/Users/zhboat/Library/Application Support/typora-user-images/image-20190316202009780.png" alt="image-20190316202009780"></p>
+</li>
+</ul>
+</li>
+<li><p>Mysql简单题**</p>
+<ul>
+<li><p>使用数据库的相关命令查询数据库的编码方式，将查询结果以文本形式提交到答题框中。</p>
+<p><code>show variables like &#39;character%&#39;;</code>查看数据库编码方式</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t3lx2y5j30pc0gsq9w.jpg" alt></p>
+</li>
+<li><p>通过mysql相关命令查询当前系统时间。以文本信息提交操作命令和查询结果到答题框。</p>
+<p><code>select sysdate();</code>查询系统时间</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t7xpvrqj30be04pt8u.jpg" alt></p>
+</li>
+<li><p>通过mysql相关命令，查看当前是什么用户，以文本信息提交操作命令和查询结果到答题框。</p>
+<p><code>select user();</code>查看当前用户</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14tbpknhkj30ac04hwek.jpg" alt></p>
+</li>
+<li><p>通过mysql相关命令，查看mysql的默认存储引擎信息，并查看mysql支持的存储引擎有哪些，以文本信息提交操作命令和查询结果到答题框。</p>
+<p><code>show variables like &#39;storage_engine&#39;;</code>查看默认存储引擎</p>
+<p><code>show variable like &#39;have%&#39;;</code>查看支持的存储引擎</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14tefa3eoj30pc0gsdn7.jpg" alt></p>
+</li>
+</ul>
+</li>
+<li><p>MySQL困难题</p>
+<ul>
+<li><p>进入数据库keystone，通过user表和local_user表做联合更新，u用来做user表别名，lu用来做local_user表别名，sql语句更新neutron用户的enabled状态为0, 更新语句中user表在local_user前面。 将sql语句，以文本形式提交到答题框。</p>
+<p><code></code></p>
+</li>
 </ul>
 </li>
 </ol>
-<hr>
 </div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-03-08</span><i class="fa fa-tag"></i><a class="tag" href="/tags/Linux/" title="Linux">Linux </a><a class="tag" href="/tags/云平台/" title="云平台">云平台 </a><a class="tag" href="/tags/OpenStack/" title="OpenStack">OpenStack </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://yoursite.com/2019/03/08/云平台运维/,随记,云平台运维,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/03/07/云平台-创建云主机/" title="云平台&amp;创建云主机">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
