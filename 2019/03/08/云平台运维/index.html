@@ -12,9 +12,7 @@
 各个节点关闭防火墙，设置开机不启动。
 
 设置各个节点selinux状态为permissive。
-
-
-ho"><meta name="keywords" content="Hexo,HTML,Android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title><a href="/">随记</a></h3><div class="description"><p>一个闲暇无事做记录的博客</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/柚木舟"><i class="fa fa-twitter"></i></a></li><li><a href="http://weibo.com/6116597460"><i class="fa fa-weibo"></i></a></li><li><a href="http://github.com/zhboat"><i class="fa fa-github"></i></a></li></ul><div class="footer"><!--a(target="_blank", href="/")//span Theme by --><!--a(href="https://www.caicai.me")  CaiCai --><!--span &--><!--a(href="https://github.com/Ben02/hexo-theme-Anatole")  Ben--><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Power by Hexo &#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><!--li// if is_current('links')
+host"><meta name="keywords" content="Hexo,HTML,Android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title><a href="/">随记</a></h3><div class="description"><p>一个闲暇无事做记录的博客</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/柚木舟"><i class="fa fa-twitter"></i></a></li><li><a href="http://weibo.com/6116597460"><i class="fa fa-weibo"></i></a></li><li><a href="http://github.com/zhboat"><i class="fa fa-github"></i></a></li></ul><div class="footer"><!--a(target="_blank", href="/")//span Theme by --><!--a(href="https://www.caicai.me")  CaiCai --><!--span &--><!--a(href="https://github.com/Ben02/hexo-theme-Anatole")  Ben--><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Power by Hexo &#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><!--li// if is_current('links')
   // a.current(href="/links")= __('Links')					
  //else
    //a(href="/links")= __('Links')		--><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>云平台运维</a></h3></div><div class="post-content"><center><h1>题库记录</h1></center>
@@ -31,31 +29,30 @@ ho"><meta name="keywords" content="Hexo,HTML,Android,Linux"><meta content="width
 <li><p>各个节点关闭防火墙，设置开机不启动。</p>
 </li>
 <li><p>设置各个节点selinux状态为permissive。</p>
-</li>
-</ul>
 <p><code>hostnamectl set-hostname controller</code>设置控制节点主机名</p>
 <p><code>hostnamectl set-hostname compute</code>设置计算节点主机名</p>
 <p><code>systemctl stop firewalld</code>关闭controller/compute防火墙服务</p>
 <p><code>systemctl disable firewalld</code>设置controller/compute防火墙服务开机不自启</p>
 <p><code>setenforce 0</code>临时关闭SeLinux防火墙</p>
 </li>
+</ul>
+</li>
 <li><p>使用hostname命令查询控制/计算节点的主机名,以文本形式依次将查询命令及对应结果提交到答题框。</p>
+<p>​    <code>hostname</code>查看controller/compute主机名</p>
+</li>
+<li><p>使用getenforce命令查询控制/计算节点selinux的状态,以文本形式依次将查询命令及对应结果提交到答题框。</p>
+<p>​    <code>getenforce</code>查看controller/compute的SeLinux状态</p>
+</li>
+<li><p>在控制节点上通过SecureFX上传两个镜像文件CentOS-7-x86_64-DVD-1511.iso, XianDian-IaaS-v2.2.iso到opt下，通过命令行展开仅使用一条命令按先后顺序同时创建/opt下两个目录centos和iaas,并将以上镜像文件分别挂载到上述两个目录下，并使用df命令查看挂载的情况（需显示挂载的文件系统类型和具体的大小）在答题框依次提交上述的命令以及执行结果。</p>
+<p>​    <code>df -Th</code>查看挂载情况</p>
 </li>
 </ul>
-<p>​    <code>hostname</code>查看controller/compute主机名</p>
-<ul>
-<li>使用getenforce命令查询控制/计算节点selinux的状态,以文本形式依次将查询命令及对应结果提交到答题框。</li>
-</ul>
-<p>​    <code>getenforce</code>查看controller/compute的SeLinux状态</p>
-<ul>
-<li>在控制节点上通过SecureFX上传两个镜像文件CentOS-7-x86_64-DVD-1511.iso, XianDian-IaaS-v2.2.iso到opt下，通过命令行展开仅使用一条命令按先后顺序同时创建/opt下两个目录centos和iaas,并将以上镜像文件分别挂载到上述两个目录下，并使用df命令查看挂载的情况（需显示挂载的文件系统类型和具体的大小）在答题框依次提交上述的命令以及执行结果。</li>
-</ul>
-<p>​    <code>df -Th</code>查看挂载情况</p>
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKly1g14k6m2ehxj30sg0jw120.jpg" alt></p>
 <ul>
-<li>配置控制节点本地yum源文件local.repo ，搭建ftp服务器指向存放yum源路径；配置计算节点yum源文件ftp.repo使用之前配置的控制节点ftp作为yum源，其中的两个节点的地址使用主机名表示。使用cat命令查看上述控制/计算节点的yum源全路径配置文件。以文本形式提交查询命令及结果到答题框。</li>
-</ul>
+<li><p>配置控制节点本地yum源文件local.repo ，搭建ftp服务器指向存放yum源路径；配置计算节点yum源文件ftp.repo使用之前配置的控制节点ftp作为yum源，其中的两个节点的地址使用主机名表示。使用cat命令查看上述控制/计算节点的yum源全路径配置文件。以文本形式提交查询命令及结果到答题框。</p>
 <p>​    <code>cat /etc/yum.repos.d/a.repo</code>查看controller/compute的yum配置文件</p>
+</li>
+</ul>
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKly1g14ka4c7t8j30sg0jwqcd.jpg" alt></p>
 <ul>
 <li><p>在控制节点和计算节点分别安装iaas-xiandian软件包，完成配置文件中基本变量的配置，并根据提供的参数完成指定变量的配置，以文本形式提交配置文件内容到答题框中。</p>
