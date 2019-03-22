@@ -410,6 +410,120 @@ host"><meta name="keywords" content="Hexo,HTML,Android,Linux"><meta content="wid
 <ul>
 <li><p>在keystone中创建用户testuser，密码为password，以文本形式提交以上操作命令到答题框。</p>
 <p><code>source /etc/keystone/admin-openrc.sh</code></p>
+<p><code>openstack user create --domain xiandian --password password testuser</code>创建用户testuser,密码为password</p>
+</li>
+<li><p>将testuser用户分配给admin项目，赋予用户user的权限，以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack role add --project admin --user testuser admin</code>讲testuser用户归类于admin项目,并赋予user权限</p>
+</li>
+<li><p>以管理员身份将testuser用户的密码修改为000000，以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack user set --password 000000 testuser</code>修改testuser用户的密码为000000</p>
+</li>
+<li><p>通过openstack相关命令获取token值，以文本形式提交以上操作命令到答题框。</p>
+<p><code>opesnatck token issue</code>获取token值</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdhjy8jwj30ru0j7wnb.jpg" alt></p>
+</li>
+<li><p>查询认证服务的查询端点信息，以文本形式提交查询命令和结果到答题框。</p>
+<p><code>openstack endpoint list</code>查询认证服务端点信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdith4bdj31k90u21kx.jpg" alt></p>
+</li>
+<li><p>使用命令列出认证服务目录，将查询命令和返回结果以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack catalog list</code>查询认证服务目录</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdktx6hzj30ru0j7n63.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="7">
+<li><p><strong>Keystone 困难题</strong></p>
+<ul>
+<li><p>在keystone中创建用户testuser，密码为password，创建好之后，使用命令修改testuser密码为000000，并查看testuser的详细信息，以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack user create --domain xiandian -password password testuser</code>创建用户testuser,密码为password</p>
+<p><code>openstack user set --password 000000 testuser</code>修改testuser用户的密码为000000</p>
+<p><code>openstack user show testuser</code>查看testuser用户的详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdvdf2p0j30qm0hz7bt.jpg" alt></p>
+</li>
+<li><p>在keystone中创建用户testuser，密码为password，创建好之后，使用命令修改testuser的状态为down，并查看testuser的详细信息，以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack user create --domain xiandian --password password testuser</code>创建testuser用户,密码为password</p>
+<p><code>openstack user set --disable testuser</code>修改testuser用户状态为down</p>
+<p><code>openstack user show testuser</code>查看testuser用户详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdyjux1zj30ru0j77c4.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="8">
+<li><p>Glance简单题</p>
+<ul>
+<li><p>使用glance相关命令上传<a href="https://pan.baidu.com/s/1KQDG9Z46DU21Ja0r3iX5eg" target="_blank" rel="noopener">CentOS_6.5_x86_64_XD.qcow2</a>镜像到云主机中，镜像名为testone，然后使用openstack相关命令，并查看镜像的详细信息，将命令与返回结果提交到答题框。</p>
+<p><code>glance image-create --name &#39;testone&#39; --disk-format qcow2 --container-format bare --progress &lt; /opt/iaas-repo/image/CentOS_6.5_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testone</p>
+<p><code>openstack image show testone</code> 使用openstack image show 查看刚刚创建的testone镜像详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKly1g1bf5lxrpdj30ru0j7dot.jpg" alt></p>
+</li>
+<li><p>使用glance相关命令上传两个镜像，一个名字为testone，一个名字叫testtwo，使用相同的镜像源CentOS_6.5_x86_64_XD.qcow2，然后使用openstack命令查看镜像列表，接着检查这两个镜像的checksum值是否相同，将命令与返回结果提交到答题框。</p>
+<p><code>glance image-create --name &quot;testone&quot; --disk-format qcow2 --container-format bare --progress &lt; CentOS_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testone</p>
+<p><code>glance image-create --name &quot;testtwo&quot; --disk-format qcow2 --container-format bare --progress &lt; CentOS_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testtwo</p>
+<p><code>openstack image list</code>查看镜像列表</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1blvzx6soj310p0obk4x.jpg" alt></p>
+</li>
+<li><p>登录iaas云主机，使用glance相关命令，上传镜像，源使用CentOS_6.5_x86_64_XD.qcow2，名字为testone，然后使用openstack命令修改这个镜像名改为examimage，改完后使用openstack命令查看镜像列表，将命令与返回结果以文本形式提交到答题框。</p>
+<p><code>glance image-create --name &quot;testone&quot; --disk-format qcow2 --container-format bare --progress &lt; CentOS_6.5_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testone</p>
+<p><code>openstack image set testone --name examimage</code>修改testone镜像名为examimage</p>
+<p><code>openstack image list</code>查看镜像列表</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm2punw3j310p0ob14e.jpg" alt></p>
+</li>
+<li><p>使用glance相关命令，上传镜像，源使用CentOS_6.5_x86_64_XD.qcow2，名字为examimage，然后使用openstack命令查看镜像列表，然后给这个镜像打一个标签，标签名字为lastone，接着查询修改的结果，将命令与返回结果以文本形式提交到答题框。</p>
+<p><code>glance image-create --name &quot;examimage&quot; --disk-format qcow2 --container-format bare --progress &lt; CentOS_6.5_x86_64_XD.qcow2</code>上传镜像CentOS.qcow2,镜像名为examimage</p>
+<p><code>openstack image set examimage --tag lastone</code>修改examimage镜像标签为lastone</p>
+<p><code>openstack image show examimage</code>查看examimage镜像详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm5qqyvbj310p0obtlq.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="9">
+<li><p>Glance困难题</p>
+<ul>
+<li><p>通过一条组合命令获取镜像列表信息，该组合命令包含：</p>
+<ul>
+<li><p>使用curl命令获取镜像列表信息；</p>
+</li>
+<li><p>使用openstack相关命令获取的token值；</p>
+</li>
+<li><p>仅使用awk命令且用“|”作为分隔符获取token具体参数值。</p>
+</li>
+<li><p>以文本形式提交该组合命令和反馈结果到答题框中。</p>
+</li>
+</ul>
+<!-- curl -s -H "X-Auth-Token:`openstack token issue | awk -F '|''/\sid\s/{print $3}'`" http://xiandian:9292/v2/images | python -mjson.tool -->
+<pre><code>curl -s -H "X-Auth-Token:`openstack token issue |awk -F '|' '/\sid\s/ {print $3}'`" http://xiandian:9292/v2/images |python -m json.tool</code></pre>
+
+<ul>
+<li><font color="red">curl -s -H :-s –silent 静音模式,不输出任何东西 ,-H –header 自定义头信息传递给服务器</font></li>
+<li><font color="red">opesnatck token issue获取token值</font></li>
+<li><font color="red">awk -F ‘|’ ‘/\sid\s/{print $3}’ :搜索id关键字，打印第三列字符串</font>
+</li>
+<li><font color="red">X-Auth-Token  :http协议报文头部数据</font></li>
+<li><font color="red">Python -m json.tool :将json字符格式化显示</font>
+
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bnyoxjipj310p0p0nbo.jpg" alt></p>
+</li>
+<li><p>通过一条组合命令获取该镜像详细信息，该组合命令要求：</p>
+<ul>
+<li><p>不能使用任何ID作为参数；</p>
+</li>
+<li><p>使用openstack相关命令获取详细信息；</p>
+</li>
+<li><p>使用glance相关命令获取镜像对应关系；</p>
+</li>
+<li><p>仅使用awk命令且用“|”作为分隔符获取ID值。</p>
+</li>
+<li>以文本形式提交该组合命令和反馈结果到答题框中。</li>
+</ul>
 </li>
 </ul>
 </li>
