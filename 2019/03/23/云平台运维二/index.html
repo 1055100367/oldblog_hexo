@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>云平台运维二 | 随记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="任务二、IaaS云平台运维  Rabbitmq简单题  按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云平台运维二">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/云平台运维二/index.html">
+<meta property="og:site_name" content="随记">
+<meta property="og:description" content="任务二、IaaS云平台运维  Rabbitmq简单题  按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14tv58sr0j30ue0k6gol.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14um788owj30pc0gsq9g.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14undy4tgj30pc0gs0zc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14uvdk7gcj30pc0gstex.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g16ywdf5dij310x08gq8w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t3lx2y5j30pc0gsq9w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t7xpvrqj30be04pt8u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14tbpknhkj30ac04hwek.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14tefa3eoj30pc0gsdn7.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1705kdzicj30oq0gstfo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g170ad0t70j30ru0jw10q.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g173jcgwvjj30ru0jwtk2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g173shvaxej30ru0jwwoa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdhjy8jwj30ru0j7wnb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdith4bdj31k90u21kx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdktx6hzj30ru0j7n63.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdvdf2p0j30qm0hz7bt.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdyjux1zj30ru0j77c4.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g1bf5lxrpdj30ru0j7dot.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1blvzx6soj310p0obk4x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm2punw3j310p0ob14e.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm5qqyvbj310p0obtlq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqc9tfzoj305y04mweb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bnyoxjipj310p0p0nbo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bpfusyphj310p0p0anx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bps3cuahg301t01tweh.gif">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bq8nqalrj310p0p0qfx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqbna3iuj312j0p0dsx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqim23h5j312j0p07in.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqkix8awj312j0p04d5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1clyirh3xj30ru0jw48k.jpg">
+<meta property="og:updated_time" content="2019-03-23T07:15:08.913Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="云平台运维二">
+<meta name="twitter:description" content="任务二、IaaS云平台运维  Rabbitmq简单题  按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14tv58sr0j30ue0k6gol.jpg">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">柚木舟</h5>
+          <a href="mailto:zhboat@163.com" title="zhboat@163.com" class="mail">zhboat@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6116597460" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhboat" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">云平台运维二</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">云平台运维二</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-23T07:15:00.000Z" itemprop="datePublished" class="page-time">
+  2019-03-23
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-云平台运维二" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">云平台运维二</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-23 15:15:00" datetime="2019-03-23T07:15:00.000Z" itemprop="datePublished">2019-03-23</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>任务二、IaaS云平台运维</strong></p>
+<ol>
+<li><p><strong>Rabbitmq简单题</strong></p>
+<ul>
+<li><p>按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。</p>
+<p>云主机： </p>
+<ul>
+<li><p>名称：IaaS</p>
+</li>
+<li><p>镜像文件：Xiandian-IaaS-All.qcow2</p>
+</li>
+<li><p>云主机类型：4cpu、8G内存、100G硬盘</p>
+</li>
+<li><p>网络：网络1：int-net1，绑定浮动IP</p>
+<ul>
+<li>网络2：int-net2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>​    <strong>注：该镜像已安装IaaS平台所有可能使用的组件，用于完成IaaS平台相关运维操作题，必须按以上配置信息配置接入两个网络才能保证云主机运行正常。</strong></p>
+<p>​    <strong>Tip</strong>:<a href="https://pan.baidu.com/s/1oakq_dVTrP4nrg4jke3IOA" target="_blank" rel="noopener">iaas.qcow2镜像</a> 提取码: ncu4</p>
+<p>​    <code>glance image-create --name &quot;iaas&quot; --disk-format qcow2 --container-format bare --progress &lt; iaas.qocw2</code>上传iaas.qcow2 镜像到云平台</p>
+<p>​    使用该镜像创建iaas云主机完成以下题目</p>
+<p>​    根据题目要求，连接相应的云主机或各节点服务器，进行以下答题。 </p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKly1g14tv58sr0j30ue0k6gol.jpg" alt></p>
+<ul>
+<li><p>使用rabbitmqctl创建用户xiandian-admin，密码为admin。将以上所有操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl add_user xiandian-admin admin</code>创建用户xiandian-admin,密码为admin</p>
+</li>
+<li><p>使用rabbitmqctl命令查询所有用户列表，将以上所有操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl list_users</code>查询所有用户列表</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14um788owj30pc0gsq9g.jpg" alt></p>
+</li>
+<li><p>使用命令对xiandian-admin用户进行授权，对本机所有资源可写可读权限。</p>
+<p><code>rabbitmqctl set_permissions xiandian-admin &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code>给xiandian-admin用户对本机所有资源的读写授权</p>
+</li>
+<li><p>使用rabbitmqctl命令查询集群状态，将操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl cluster status</code>查询集群状态</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14undy4tgj30pc0gs0zc.jpg" alt></p>
+</li>
+</ul>
+<hr>
+</li>
+<li><p>Rabbitmq困难题**</p>
+<ul>
+<li><p>使用命令给xiandian-admin用户创建administrator角色，并查询，将以上所有操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl set_user_tags xiandian-admin amdinistrator</code>设置xiandian-admin用户为administrator</p>
+<p><code>rabbitmqctl list_users</code>查询所有用户</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14uvdk7gcj30pc0gstex.jpg" alt></p>
+</li>
+<li><p>使用命令对用户xiandian-admin进行授权，对本机所有资源可写可读权限，然后查询xiandian-admin用户的授权信息，将操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
+<p><code>rabbitmqctl set_permissions xiandian-admin &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code>给xiandian-admin用户对本机所有资源的读写授权</p>
+<p><code>rabbitmqctl list_user_permissions xiandian-admin</code>查询xiandian-admin用户的权限</p>
+</li>
+<li><p>使用rabbitmqctl命令，查看队列信息，所包含的信息包括name，arguments，messages，memory。</p>
+<p><code>rabbitmqctl list_queues name arguments messages memory</code></p>
+</li>
+<li><p>通过修改配置文件的方式使memcache的缓存有64MB变为256MB，使用ps相关命令查询memcahce(笨比题目…..)进程的信息，将修改的配置文件全路径文件名、修改的参数以及相应的参数值、查询到的memcache进程信息以文本形式提交到答题框中。</p>
+<p><code>ps aux |grep memcache</code>查看没修改前的进程信息</p>
+<p><code>sed &#39;s/64/256/g&#39; /etc/sysconfig/memcached -i</code> 修改缓存为256</p>
+<p><code>cat /etc/sysconfig/memcache</code></p>
+<p><code>ps aux |grep memcache</code>查看修改后的进程信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g16ywdf5dij310x08gq8w.jpg" alt></p>
+</li>
+</ul>
+<hr>
+</li>
+<li><p><strong>Mysql简单题</strong></p>
+<ul>
+<li><p>使用数据库的相关命令查询数据库的编码方式，将查询结果以文本形式提交到答题框中。</p>
+<p><code>show variables like &#39;character%&#39;;</code>查看数据库编码方式</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t3lx2y5j30pc0gsq9w.jpg" alt></p>
+</li>
+<li><p>通过mysql相关命令查询当前系统时间。以文本信息提交操作命令和查询结果到答题框。</p>
+<p><code>select sysdate();</code>查询系统时间</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t7xpvrqj30be04pt8u.jpg" alt></p>
+</li>
+<li><p>通过mysql相关命令，查看当前是什么用户，以文本信息提交操作命令和查询结果到答题框。</p>
+<p><code>select user();</code>查看当前用户</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14tbpknhkj30ac04hwek.jpg" alt></p>
+</li>
+<li><p>通过mysql相关命令，查看mysql的默认存储引擎信息，并查看mysql支持的存储引擎有哪些，以文本信息提交操作命令和查询结果到答题框。</p>
+<p><code>show variables like &#39;storage_engine&#39;;</code>查看默认存储引擎</p>
+<p><code>show variable like &#39;have%&#39;;</code>查看支持的存储引擎</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14tefa3eoj30pc0gsdn7.jpg" alt></p>
+</li>
+</ul>
+<hr>
+</li>
+<li><p>MySQL困难题**</p>
+<ul>
+<li><p>进入数据库keystone，通过user表和local_user表做联合更新，u用来做user表别名，lu用来做local_user表别名，sql语句更新neutron用户的enabled状态为0, 更新语句中user表在local_user前面。 将sql语句，以文本形式提交到答题框。</p>
+<p><code>use keystone;</code>使用keystone库</p>
+<p><code>select enabled from user as u,local_user as lu where u.id=lu.user_id and lu.name=&quot;neutron&quot;;</code>user表取别名u,local_user取别名lu,联合查询user表和local_user表的neutron用户enabled状态</p>
+<p><code>update user as u,local_user as lu set u.enabled=&quot;0&quot; where u.id=lu.user_id and lu.name=&quot;neutron&quot;;</code>更新user和local_user表的enabled状态为1</p>
+<p><code>select enabled from user as u,local_user as lu where u.id=lu.user_id and lu.name=&quot;neutron&quot;;</code>user表取别名u,local_user取别名lu,联合查询user表和local_user表的neutron用户更新后的enabled状态</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1705kdzicj30oq0gstfo.jpg" alt></p>
+</li>
+<li><p>进入数据库keystone，通过user表和local_user表做联合查询，u用来做user表别名，lu用来做local_user表别名，两表联合查询nova用户的enabled状态,查询语句中user表在local_user前面。将所有操作命令及反馈结果提交到答题框。</p>
+<p><code>use keystone;</code>使用keystone库</p>
+<p><code>select enabled from user as u,local_user as lu where u.id=lu.user_id and lu.name=&quot;nova&quot;</code>user表取别名u,local_user取别名lu,联合查询Nova用户enabled状态</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g170ad0t70j30ru0jw10q.jpg" alt></p>
+</li>
+<li><p>进入数据库，创建本地用户examuser，密码为000000，然后查询mysql数据库中的user表的host，user，password字段。最后赋予这个用户所有数据库的“查询”“删除”“更新”“创建”的本地权限。以文本形式提交以上操作命令到答题框。</p>
+<p><code>use mysql;</code>使用mysql库</p>
+<p><code>insert into mysql.user(host,user,Password) values(&quot;localhost&quot;,&quot;examuser&quot;,Password(&quot;000000&quot;));</code>创建本地用户,用户名为examuser,密码为000000</p>
+<p><code>select host,user,password from user;</code></p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g173jcgwvjj30ru0jwtk2.jpg" alt></p>
+<p><code>grant select,delete,update,create on *.* to examuser@&quot;localhost&quot; identified by &quot;000000&quot;</code> 赋予examuser用户查询,删除,更新,创建的本地权限</p>
+</li>
+<li><p>登录 iaas 云主机，登录 mysql 数据库，使用 keystone 数据库，查询本地用户表中的所有信息，并按照 id 的降序排序。将以上所有的操作命令及返回结果以文本形式提交到答题框。（关于数据库的命令均使用小写） </p>
+<p><code>use keystone;</code>使用keystone库</p>
+<p><code>select * from user order by id desc;</code>以降序查看id表中所有信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g173shvaxej30ru0jwwoa.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li><strong>MongoDB运维</strong><ul>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，查看数据库，使用 ceilometer数据库，查看此数据库下的集合，并查询此数据库用户，最后创建一个数据库并查询。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据，最后查询特定的一类数据。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据，插入完毕后，数据进行修改，修改完后，查询修改完的数据。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据（其中某一条数据插入两遍），插入数据完毕后，发现某条数据多插入了一遍需要删除，请使用命令删除多余的一行数据，最后将数据库删除。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据，插入完毕后，查询集合中的数据并按照某关键字的升序排序，将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中批量插入多条数据，使用 for 循环，定义变量 i=1，插入”_id” : i，”name” : “xiaoming”， “age” : “21”。插入数据完毕后，统计集合中的数据条数，然后查询集合中满足特定条件的结果。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
+<li>登录 iaas 云主机，使用 mongoimport 命令，将给定的文件，导入至 MongoDB下的相应数据库中的指定集合中。导入后登录 MongoDB 数据库。查询集合中满足特的条件的结果。将上述所有操作命令及返回结果以文本形式提交到答题框。注：PPG–场均得分；PTS–总得分；FG%–投篮命中率；3P%–三分命中率；MPG–平均上场时间</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="6">
+<li><p><strong>Keystone简单题</strong></p>
+<ul>
+<li><p>在keystone中创建用户testuser，密码为password，以文本形式提交以上操作命令到答题框。</p>
+<p><code>source /etc/keystone/admin-openrc.sh</code></p>
+<p><code>openstack user create --domain xiandian --password password testuser</code>创建用户testuser,密码为password</p>
+</li>
+<li><p>将testuser用户分配给admin项目，赋予用户user的权限，以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack role add --project admin --user testuser admin</code>讲testuser用户归类于admin项目,并赋予user权限</p>
+</li>
+<li><p>以管理员身份将testuser用户的密码修改为000000，以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack user set --password 000000 testuser</code>修改testuser用户的密码为000000</p>
+</li>
+<li><p>通过openstack相关命令获取token值，以文本形式提交以上操作命令到答题框。</p>
+<p><code>opesnatck token issue</code>获取token值</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdhjy8jwj30ru0j7wnb.jpg" alt></p>
+</li>
+<li><p>查询认证服务的查询端点信息，以文本形式提交查询命令和结果到答题框。</p>
+<p><code>openstack endpoint list</code>查询认证服务端点信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdith4bdj31k90u21kx.jpg" alt></p>
+</li>
+<li><p>使用命令列出认证服务目录，将查询命令和返回结果以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack catalog list</code>查询认证服务目录</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdktx6hzj30ru0j7n63.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="7">
+<li><p><strong>Keystone 困难题</strong></p>
+<ul>
+<li><p>在keystone中创建用户testuser，密码为password，创建好之后，使用命令修改testuser密码为000000，并查看testuser的详细信息，以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack user create --domain xiandian -password password testuser</code>创建用户testuser,密码为password</p>
+<p><code>openstack user set --password 000000 testuser</code>修改testuser用户的密码为000000</p>
+<p><code>openstack user show testuser</code>查看testuser用户的详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdvdf2p0j30qm0hz7bt.jpg" alt></p>
+</li>
+<li><p>在keystone中创建用户testuser，密码为password，创建好之后，使用命令修改testuser的状态为down，并查看testuser的详细信息，以文本形式提交以上操作命令到答题框。</p>
+<p><code>openstack user create --domain xiandian --password password testuser</code>创建testuser用户,密码为password</p>
+<p><code>openstack user set --disable testuser</code>修改testuser用户状态为down</p>
+<p><code>openstack user show testuser</code>查看testuser用户详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdyjux1zj30ru0j77c4.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="8">
+<li><p><strong>Glance简单题</strong></p>
+<ul>
+<li><p>使用glance相关命令上传<a href="https://pan.baidu.com/s/1KQDG9Z46DU21Ja0r3iX5eg" target="_blank" rel="noopener">CentOS_6.5_x86_64_XD.qcow2</a>镜像到云主机中，镜像名为testone，然后使用openstack相关命令，并查看镜像的详细信息，将命令与返回结果提交到答题框。</p>
+<p><code>glance image-create --name &#39;testone&#39; --disk-format qcow2 --container-format bare --progress &lt; /opt/iaas-repo/image/CentOS_6.5_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testone</p>
+<p><code>openstack image show testone</code> 使用openstack image show 查看刚刚创建的testone镜像详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKly1g1bf5lxrpdj30ru0j7dot.jpg" alt></p>
+</li>
+<li><p>使用glance相关命令上传两个镜像，一个名字为testone，一个名字叫testtwo，使用相同的镜像源CentOS_6.5_x86_64_XD.qcow2，然后使用openstack命令查看镜像列表，接着检查这两个镜像的checksum值是否相同，将命令与返回结果提交到答题框。</p>
+<p><code>glance image-create --name &quot;testone&quot; --disk-format qcow2 --container-format bare --progress &lt; CentOS_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testone</p>
+<p><code>glance image-create --name &quot;testtwo&quot; --disk-format qcow2 --container-format bare --progress &lt; CentOS_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testtwo</p>
+<p><code>openstack image list</code>查看镜像列表</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1blvzx6soj310p0obk4x.jpg" alt></p>
+</li>
+<li><p>登录iaas云主机，使用glance相关命令，上传镜像，源使用CentOS_6.5_x86_64_XD.qcow2，名字为testone，然后使用openstack命令修改这个镜像名改为examimage，改完后使用openstack命令查看镜像列表，将命令与返回结果以文本形式提交到答题框。</p>
+<p><code>glance image-create --name &quot;testone&quot; --disk-format qcow2 --container-format bare --progress &lt; CentOS_6.5_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testone</p>
+<p><code>openstack image set testone --name examimage</code>修改testone镜像名为examimage</p>
+<p><code>openstack image list</code>查看镜像列表</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm2punw3j310p0ob14e.jpg" alt></p>
+</li>
+<li><p>使用glance相关命令，上传镜像，源使用CentOS_6.5_x86_64_XD.qcow2，名字为examimage，然后使用openstack命令查看镜像列表，然后给这个镜像打一个标签，标签名字为lastone，接着查询修改的结果，将命令与返回结果以文本形式提交到答题框。</p>
+<p><code>glance image-create --name &quot;examimage&quot; --disk-format qcow2 --container-format bare --progress &lt; CentOS_6.5_x86_64_XD.qcow2</code>上传镜像CentOS.qcow2,镜像名为examimage</p>
+<p><code>openstack image set examimage --tag lastone</code>修改examimage镜像标签为lastone</p>
+<p><code>openstack image show examimage</code>查看examimage镜像详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm5qqyvbj310p0obtlq.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="9">
+<li><p><strong>Glance困难题</strong></p>
+<ul>
+<li><p>通过一条组合命令获取镜像列表信息，该组合命令包含：</p>
+<ul>
+<li><p>使用curl命令获取镜像列表信息；</p>
+</li>
+<li><p>使用openstack相关命令获取的token值；</p>
+</li>
+<li><p>仅使用awk命令且用“|”作为分隔符获取token具体参数值。</p>
+</li>
+<li><p>以文本形式提交该组合命令和反馈结果到答题框中。</p>
+</li>
+</ul>
+<!-- curl -s -H "X-Auth-Token:`openstack token issue | awk -F '|''/\sid\s/{print $3}'`" http://xiandian:9292/v2/images | python -mjson.tool -->
+<pre><code>curl -s -H "X-Auth-Token:`openstack token issue |awk -F '|' '/\sid\s/ {print $3}'`" http://xiandian:9292/v2/images |python -m json.tool</code></pre>
+
+<ul>
+<li><font color="red">curl -s -H :-s –silent 静音模式,不输出任何东西 ,-H –header 自定义头信息传递给服务器</font></li>
+<li><font color="red">opesnatck token issue获取token值</font></li>
+<li><font color="red">awk -F ‘|’ ‘/\sid\s/{print $3}’ :搜索以id为关键的第三列关键词</font>
+</li>
+<li><font color="red">X-Auth-Token  :http协议报文头部数据</font></li>
+<li><font color="red">Python -m json.tool :将json字符格式化显示</font></li>
+<li>这什么鬼玩意…..<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqc9tfzoj305y04mweb.jpg" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bnyoxjipj310p0p0nbo.jpg" alt></p>
+</li>
+<li><p>通过一条组合命令获取该镜像详细信息，该组合命令要求：</p>
+<ul>
+<li><p>不能使用任何ID作为参数；</p>
+</li>
+<li><p>使用openstack相关命令获取详细信息；</p>
+</li>
+<li><p>使用glance相关命令获取镜像对应关系；</p>
+</li>
+<li><p>仅使用awk命令且用“|”作为分隔符获取ID值。</p>
+</li>
+<li>以文本形式提交该组合命令和反馈结果到答题框中。</li>
+</ul>
+<p><code>openstack image show $(glance image-list |awk -F &#39;|&#39; &#39;/\sexamimage\s/ {print $2}&#39;)</code></p>
+<ul>
+<li><font color="red">openstack image show xxx查看xxx镜像详情</font></li>
+<li><font color="red">glance image-list 查看镜像列表</font></li>
+<li><font color="red">awk -F ‘|’ ‘/\sexamimage\s/ {print $2}’搜索以examimage为关键的第二列关键词</font>
+
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bpfusyphj310p0p0anx.jpg" alt></p>
+</li>
+<li><p>查看glance配置文件，找到默认的镜像存储目录，进入到存储目录中，使用qemu命令查看任意的一个镜像，将操作命令和返回结果以文本形式提交到答题框。</p>
+<p><code>qemu-img info $(ll /var/lib/glance/images/ |awk &#39;NR==2{print $9}&#39;)</code></p>
+<ul>
+<li><font color="red">qemu-img info xxx查看xxx的镜像详情</font></li>
+<li><font color="red">ll /var/lib/glance/images列出改目录所有文件</font></li>
+<li><font color="red">awk ‘NR==2{print $9}’查看第九列第二行的数据并打印出来</font>
+
+</li>
+</ul>
+<p>但是也有简单的用法,去那个目录复制粘贴一个就行…. —&gt; qemu-img info copy and paste</p>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bps3cuahg301t01tweh.gif" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></center>
+
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="10">
+<li><p><strong>Nova简单题</strong></p>
+<ul>
+<li><p>修改云平台中默认每个tenant的实例注入文件大小配额为20480字节，在答题框填入该命令，查询修改后的默认配额信息并以文本形式提交到答题框。</p>
+<p><code>nova quota-class-show default</code>查看默认配额信息</p>
+<p><code>nova quota-class-update --injected-content-bytes 20480 default</code>修改每个tenant大小配额为20480字节</p>
+<p><code>nova quota-class-show default</code>查看默认配额信息</p>
+</li>
+<li><p>通过nova的相关命令创建云主机类型，名字exam，ID为1234，内存为1024，硬盘为20G，虚拟内核数量为2，提交云主机类型exam的详细信息到答题卡中。</p>
+<p><code>nova flavor-create exam 1234 1024 20 2</code>创建云主机类型，名字exam，ID为1234，内存为1024，硬盘为20G，虚拟内核数量为2</p>
+<p><code>nova flavor-show 1234</code>以ID形式查看云主机类型详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bq8nqalrj310p0p0qfx.jpg" alt></p>
+</li>
+<li><p>使用nova相关命令，查询nova所有服务状态，将操作命令和返回结果以文本形式提交到答题框。</p>
+<p><code>nova service-list</code>查询nova所有服务状态</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqbna3iuj312j0p0dsx.jpg" alt></p>
+</li>
+<li><p>修改云平台中默认每个tenant的实例配额为20个，在答题框填入该命令，查询修改后的默认配额信息并以文本形式提交到答题框。</p>
+<p><code>nova quota-class-show default</code>查看默认配额信息</p>
+<p><code>nova quota-class update --instances 20 default</code>修改tenant实例配额为20个</p>
+<p><code>nova quota-class-show default</code>查看更新后的默认配额信息<br><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqim23h5j312j0p07in.jpg" alt></p>
+</li>
+<li><p>使用nova相关命令，查询nova所有的监控列表，并查看ID为1的监控主机的详细信息，将操作命令和返回结果以文本形式提交到答题框。</p>
+<p><code>nova hypervisor-list</code>查看所有监控列表</p>
+<p><code>nova hypervisor-show 1</code>查看ID为1的详情</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqkix8awj312j0p04d5.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="11">
+<li><p><strong>Nova困难题</strong></p>
+<ul>
+<li><p>使用grep命令配合-v参数控制节点/etc/nova/nova.conf文件中有效的命令行覆盖输出到/etc/novaback.conf文件，将该命令连同cat备份后文件打印出来的信息提交到答题框中。</p>
+<p><code>grep -v &quot;^$&quot; /etc/nova/nova.conf | grep -v ^[#] &gt; /etc/nova/novaback.conf</code></p>
+<ul>
+<li><font color="red">grep -v “^quot;反向选中空行过滤 —&gt;删除空行</font></li>
+<li><font color="red">grep -v ^[#]反向选中以#开头的行来过滤 —&gt;删除#开头的行</font>
+
+</li>
+</ul>
+<p><code>cat /etc/nova/novaback.conf</code>查看被修改后的nova.conf</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1clyirh3xj30ru0jw48k.jpg" alt></p>
+</li>
+<li><p>此题可使用物理iaas环境，使用nova相关命令，启动一个云主机，云主机类型使用m1.small，镜像使用CentOS_6.5_x86_64_XD.qcow2，云主机名称为examtest，将操作命令及返回结果以文本的方式提交到答题框。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-03-23T07:15:08.913Z" itemprop="dateUpdated">2019-03-23 15:15:08</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/logo.png" alt="柚木舟">
+            柚木舟
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/23/云平台运维二/&title=《云平台运维二》 — 随记&pic=http://yoursite.com/img/logo.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/23/云平台运维二/&title=《云平台运维二》 — 随记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/23/云平台运维二/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《云平台运维二》 — 随记&url=http://yoursite.com/2019/03/23/云平台运维二/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/23/云平台运维二/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/08/云平台运维/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">云平台运维</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>柚木舟 &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/23/云平台运维二/&title=《云平台运维二》 — 随记&pic=http://yoursite.com/img/logo.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/23/云平台运维二/&title=《云平台运维二》 — 随记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/23/云平台运维二/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《云平台运维二》 — 随记&url=http://yoursite.com/2019/03/23/云平台运维二/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/23/云平台运维二/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2019/03/23/云平台运维二/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
