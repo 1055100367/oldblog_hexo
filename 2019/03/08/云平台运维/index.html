@@ -1,21 +1,190 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="柚木舟,zhboat@163.com"><title>云平台运维 · 随记</title><meta name="description" content="题库记录
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
 
 
-任务一、IaaS云平台搭建
 
-基础环境
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>云平台运维 | 随记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+    <meta name="keywords" content="Linux,云平台,OpenStack">
+    <meta name="description" content="题库记录   任务一、IaaS云平台搭建  基础环境  使用命令行方式设置主机名，防火墙以及SELinux设置如下：  设置控制节点主机名controller；计算节点主机名：compute。  各个节点关闭防火墙，设置开机不启动。  设置各个节点selinux状态为permissive。 hostnamectl set-hostname controller设置控制节点主机名 hostnamec">
+<meta name="keywords" content="Linux,云平台,OpenStack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云平台运维">
+<meta property="og:url" content="http://yoursite.com/2019/03/08/云平台运维/index.html">
+<meta property="og:site_name" content="随记">
+<meta property="og:description" content="题库记录   任务一、IaaS云平台搭建  基础环境  使用命令行方式设置主机名，防火墙以及SELinux设置如下：  设置控制节点主机名controller；计算节点主机名：compute。  各个节点关闭防火墙，设置开机不启动。  设置各个节点selinux状态为permissive。 hostnamectl set-hostname controller设置控制节点主机名 hostnamec">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14k6m2ehxj30sg0jw120.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14ka4c7t8j30sg0jwqcd.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14kp7b4paj30sg0jwn77.jpg">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.32.50.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.34.08.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.39.21.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.41.05.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.41.42.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.42.31.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.44.09.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.48.16.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.49.18.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.55.46.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-06%20下午7.57.00.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-07%20上午10.27.49.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-07%20上午10.31.23.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/图片2.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午4.45.12.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午2.10.16.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午2.13.44.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午2.20.07.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午2.21.14.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午2.22.41.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午2.23.49.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午2.26.03.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午2.59.03.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午3.01.13.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午3.02.55.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-08%20下午3.05.19.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-09%20下午12.40.08.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-09%20下午1.38.46.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-09%20下午1.49.59.png">
+<meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-11%20下午2.48.33.png">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14jjferbrj30ru0j7wmw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14jlmupj3j30ru0j711r.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14tv58sr0j30ue0k6gol.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14um788owj30pc0gsq9g.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14undy4tgj30pc0gs0zc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14uvdk7gcj30pc0gstex.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g16ywdf5dij310x08gq8w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t3lx2y5j30pc0gsq9w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t7xpvrqj30be04pt8u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14tbpknhkj30ac04hwek.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14tefa3eoj30pc0gsdn7.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1705kdzicj30oq0gstfo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g170ad0t70j30ru0jw10q.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g173jcgwvjj30ru0jwtk2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g173shvaxej30ru0jwwoa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdhjy8jwj30ru0j7wnb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdith4bdj31k90u21kx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdktx6hzj30ru0j7n63.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdvdf2p0j30qm0hz7bt.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdyjux1zj30ru0j77c4.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g1bf5lxrpdj30ru0j7dot.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1blvzx6soj310p0obk4x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm2punw3j310p0ob14e.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm5qqyvbj310p0obtlq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqc9tfzoj305y04mweb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bnyoxjipj310p0p0nbo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bpfusyphj310p0p0anx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bps3cuahg301t01tweh.gif">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bq8nqalrj310p0p0qfx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqbna3iuj312j0p0dsx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqim23h5j312j0p07in.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqkix8awj312j0p04d5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1clyirh3xj30ru0jw48k.jpg">
+<meta property="og:updated_time" content="2019-03-23T04:20:14.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="云平台运维">
+<meta name="twitter:description" content="题库记录   任务一、IaaS云平台搭建  基础环境  使用命令行方式设置主机名，防火墙以及SELinux设置如下：  设置控制节点主机名controller；计算节点主机名：compute。  各个节点关闭防火墙，设置开机不启动。  设置各个节点selinux状态为permissive。 hostnamectl set-hostname controller设置控制节点主机名 hostnamec">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14k6m2ehxj30sg0jw120.jpg">
+    
+    <link rel="shortcut icon" href="/">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
 
-使用命令行方式设置主机名，防火墙以及SELinux设置如下：
+    <!-- custom head -->
+    
 
-设置控制节点主机名controller；计算节点主机名：compute。
+</head>
 
-各个节点关闭防火墙，设置开机不启动。
+<body>
+    <div id="loading" class="active"></div>
 
-设置各个节点selinux状态为permissive。
-host"><meta name="keywords" content="Hexo,HTML,Android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title><a href="/">随记</a></h3><div class="description"><p>一个闲暇无事做记录的博客</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/MjVaNqi0y6IkYjx"><i class="fa fa-twitter"></i></a></li><li><a href="http://weibo.com/6116597460"><i class="fa fa-weibo"></i></a></li><li><a href="http://github.com/zhboat"><i class="fa fa-github"></i></a></li></ul><div class="footer"><!--a(target="_blank", href="/")//span Theme by --><!--a(href="https://www.caicai.me")  CaiCai --><!--span &--><!--a(href="https://github.com/Ben02/hexo-theme-Anatole")  Ben--><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Power by Hexo &#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><!--li// if is_current('links')
-  // a.current(href="/links")= __('Links')					
- //else
-   //a(href="/links")= __('Links')		--><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>云平台运维</a></h3></div><div class="post-content"><center><h1>题库记录</h1></center>
+    <aside id="menu">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">柚木舟</h5>
+          <a href="mailto:undefined" class="mail">
+        </a></hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">云平台运维</div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">云平台运维</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-08T08:28:06.000Z" itemprop="datePublished" class="page-time">
+  2019-03-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-云平台运维" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">云平台运维</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-08 16:28:06" datetime="2019-03-08T08:28:06.000Z" itemprop="datePublished">2019-03-08</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <center><h1>题库记录</h1></center>
 
 <hr>
 <p><strong>任务一、IaaS云平台搭建</strong></p>
@@ -515,7 +684,13 @@ host"><meta name="keywords" content="Hexo,HTML,Android,Linux"><meta content="wid
 </li>
 <li><font color="red">X-Auth-Token  :http协议报文头部数据</font></li>
 <li><font color="red">Python -m json.tool :将json字符格式化显示</font></li>
-<li>这什么鬼玩意…..<img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqc9tfzoj305y04mweb.jpg" alt></li>
+<li>这什么鬼玩意…..<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqc9tfzoj305y04mweb.jpg" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
 </ul>
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bnyoxjipj310p0p0nbo.jpg" alt></p>
 </li>
@@ -551,7 +726,13 @@ host"><meta name="keywords" content="Hexo,HTML,Android,Linux"><meta content="wid
 </li>
 </ul>
 <p>但是也有简单的用法,去那个目录复制粘贴一个就行…. —&gt; qemu-img info copy and paste</p>
-<center><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bps3cuahg301t01tweh.gif" alt></center>
+<center><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bps3cuahg301t01tweh.gif" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></center>
 
 </li>
 </ul>
@@ -590,9 +771,116 @@ host"><meta name="keywords" content="Hexo,HTML,Android,Linux"><meta content="wid
 </ol>
 <hr>
 <ol start="11">
-<li><strong>Nova困难题</strong><ul>
-<li>使用grep命令配合-v参数控制节点/etc/nova/nova.conf文件中有效的命令行覆盖输出到/etc/novaback.conf文件，将该命令连同cat备份后文件打印出来的信息提交到答题框中。</li>
+<li><p><strong>Nova困难题</strong></p>
+<ul>
+<li><p>使用grep命令配合-v参数控制节点/etc/nova/nova.conf文件中有效的命令行覆盖输出到/etc/novaback.conf文件，将该命令连同cat备份后文件打印出来的信息提交到答题框中。</p>
+<p><code>grep -v &quot;^$&quot; /etc/nova/nova.conf | grep -v ^[#] &gt; /etc/nova/novaback.conf</code></p>
+<ul>
+<li><font color="red">grep -v “^quot;反向选中空行过滤 —&gt;删除空行</font></li>
+<li><font color="red">grep -v ^[#]反向选中以#开头的行来过滤 —&gt;删除#开头的行</font>
+
+</li>
+</ul>
+<p><code>cat /etc/nova/novaback.conf</code>查看被修改后的nova.conf</p>
+<p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1clyirh3xj30ru0jw48k.jpg" alt></p>
+</li>
+<li><p>此题可使用物理iaas环境，使用nova相关命令，启动一个云主机，云主机类型使用m1.small，镜像使用CentOS_6.5_x86_64_XD.qcow2，云主机名称为examtest，将操作命令及返回结果以文本的方式提交到答题框。</p>
+</li>
 </ul>
 </li>
 </ol>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-03-08</span><i class="fa fa-comment-o"></i><a href="/2019/03/08/云平台运维/#comments">评论</a><i class="fa fa-tag"></i><a class="tag" href="/tags/Linux/" title="Linux">Linux </a><a class="tag" href="/tags/云平台/" title="云平台">云平台 </a><a class="tag" href="/tags/OpenStack/" title="OpenStack">OpenStack </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://yoursite.com/2019/03/08/云平台运维/,随记,云平台运维,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/03/07/云平台-创建云主机/" title="云平台&amp;创建云主机">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/" alt="柚木舟">
+            柚木舟
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云平台/">云平台</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/07/云平台-创建云主机/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">云平台&amp;创建云主机</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>柚木舟 &copy; 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
