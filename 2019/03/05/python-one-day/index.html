@@ -13,6 +13,8 @@
     
     
     
+    <link rel="canonical" href="https://zhboat.github.io/2019/03/05/python-one-day/">
+    
     
     <title>python one day | 随记</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -71,21 +73,21 @@
             <li class="waves-block waves-effect">
               <a href="/">
                 <i class="icon icon-lg icon-home"></i>
-                主页
+                Home
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/archives">
                 <i class="icon icon-lg icon-archives"></i>
-                归档
+                Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="http://www.weibo.com/6116597460" target="_blank">
                 <i class="icon icon-lg icon-weibo"></i>
-                微博
+                Weibo
               </a>
             </li>
         
@@ -304,18 +306,35 @@
 
 
 
-<section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
-    <!-- UY END -->
-</section>
 
 
 
 
 
 
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "VQV1S2OENUl5oKFl5gf2UzG9-gzGzoHsz",
+            appKey: "2alxiojCxS6dSUL4Y5zE4Flz",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
 
 
 

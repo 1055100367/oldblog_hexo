@@ -13,6 +13,8 @@
     
     
     
+    <link rel="canonical" href="https://zhboat.github.io/2019/03/23/云平台运维二/">
+    
     
     <title>云平台运维二 | 随记</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -20,8 +22,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content>
+    <meta name="keywords" content="Linux,云平台,OpenStack">
     <meta name="description" content="任务二、IaaS云平台运维  Rabbitmq简单题  按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用">
+<meta name="keywords" content="Linux,云平台,OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="云平台运维二">
 <meta property="og:url" content="http://yoursite.com/2019/03/23/云平台运维二/index.html">
@@ -59,7 +62,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqim23h5j312j0p07in.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqkix8awj312j0p04d5.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1clyirh3xj30ru0jw48k.jpg">
-<meta property="og:updated_time" content="2019-03-23T07:15:08.913Z">
+<meta property="og:updated_time" content="2019-03-23T07:23:05.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="云平台运维二">
 <meta name="twitter:description" content="任务二、IaaS云平台运维  Rabbitmq简单题  按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用">
@@ -99,21 +102,21 @@
             <li class="waves-block waves-effect">
               <a href="/">
                 <i class="icon icon-lg icon-home"></i>
-                主页
+                Home
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/archives">
                 <i class="icon icon-lg icon-archives"></i>
-                归档
+                Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="http://www.weibo.com/6116597460" target="_blank">
                 <i class="icon icon-lg icon-weibo"></i>
-                微博
+                Weibo
               </a>
             </li>
         
@@ -541,7 +544,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-23T07:15:08.913Z" itemprop="dateUpdated">2019-03-23 15:15:08</time>
+    最后更新时间：<time datetime="2019-03-23T07:23:05.706Z" itemprop="dateUpdated">2019-03-23 15:23:05</time>
 </span><br>
 
 
@@ -561,6 +564,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云平台/">云平台</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -635,18 +640,35 @@
 
 
 
-<section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
-    <!-- UY END -->
-</section>
 
 
 
 
 
 
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "VQV1S2OENUl5oKFl5gf2UzG9-gzGzoHsz",
+            appKey: "2alxiojCxS6dSUL4Y5zE4Flz",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
 
 
 
