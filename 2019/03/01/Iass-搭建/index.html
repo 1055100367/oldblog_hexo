@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Iass 搭建 | 随记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,云平台">
+    <meta name="description" content="Iaas 云平台搭建详解1. 给compute节点分区：  parted /dev/md126  (parted) mkpart cinder xxG xxG //xx为从多少G开始划分，例如：100G 200G 。100G足矣  (parted) mkpart swift xxG xxG //可以接着cinder的200G  (parted) p //打印出md126分区情况，记住cinder和">
+<meta name="keywords" content="Linux,云平台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Iass 搭建">
+<meta property="og:url" content="http://yoursite.com/2019/03/01/Iass-搭建/index.html">
+<meta property="og:site_name" content="随记">
+<meta property="og:description" content="Iaas 云平台搭建详解1. 给compute节点分区：  parted /dev/md126  (parted) mkpart cinder xxG xxG //xx为从多少G开始划分，例如：100G 200G 。100G足矣  (parted) mkpart swift xxG xxG //可以接着cinder的200G  (parted) p //打印出md126分区情况，记住cinder和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/parted.png">
+<meta property="og:image" content="http://yoursite.com/images/mount.png">
+<meta property="og:image" content="http://yoursite.com/images/openrc.png">
+<meta property="og:image" content="http://yoursite.com/images/ifconfig.png">
+<meta property="og:image" content="http://yoursite.com/images/Dashboard.png">
+<meta property="og:updated_time" content="2019-03-16T05:01:54.054Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Iass 搭建">
+<meta name="twitter:description" content="Iaas 云平台搭建详解1. 给compute节点分区：  parted /dev/md126  (parted) mkpart cinder xxG xxG //xx为从多少G开始划分，例如：100G 200G 。100G足矣  (parted) mkpart swift xxG xxG //可以接着cinder的200G  (parted) p //打印出md126分区情况，记住cinder和">
+<meta name="twitter:image" content="http://yoursite.com/images/parted.png">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">柚木舟</h5>
+          <a href="mailto:zhboat@163.com" title="zhboat@163.com" class="mail">zhboat@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/柚木舟_" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-about"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhboat" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Iass 搭建</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Iass 搭建</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-01T09:35:21.000Z" itemprop="datePublished" class="page-time">
+  2019-03-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Iaas-云平台搭建详解"><span class="post-toc-number">1.</span> <span class="post-toc-text">Iaas 云平台搭建详解</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Iass-搭建" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Iass 搭建</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-01 17:35:21" datetime="2019-03-01T09:35:21.000Z" itemprop="datePublished">2019-03-01</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Iaas-云平台搭建详解"><a href="#Iaas-云平台搭建详解" class="headerlink" title="Iaas 云平台搭建详解"></a>Iaas 云平台搭建详解</h2><p><strong>1. 给compute节点分区：</strong></p>
+<ul>
+<li><p><code>parted /dev/md126</code></p>
+</li>
+<li><p><code>(parted) mkpart cinder xxG xxG //xx为从多少G开始划分，例如：100G 200G 。100G足矣</code></p>
+</li>
+<li><p><code>(parted) mkpart swift xxG xxG //可以接着cinder的200G</code></p>
+</li>
+<li><p><code>(parted) p //打印出md126分区情况，记住cinder和swift前面的数字</code></p>
+<p><img src="/images/parted.png" alt="parted"></p>
+<center>如图，/dev/md126p4则为cinder p5则为swift</center>
+</li>
+<li><p><code>(parted) q //退出，无需保存</code></p>
+<p>分完区之后就是进行格式化操作</p>
+</li>
+<li><p><code>mkfs.xfs /dev/md126p x //x为cinder的分区号</code></p>
+</li>
+<li><p><code>mkfs.xfs /dev/md126p y //y为swift的分区号</code></p>
+</li>
+</ul>
+<p><strong>2. 配置controller节点和compute节点的网络和主机名</strong></p>
+<ul>
+<li><code>修改/etc/systemctl/network-scripts/ifcfg-enp* //星号后为内网网卡</code></li>
+<li><p>修改controller节点的网络配置:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onboot=yes</span><br><span class="line">ipaddr=192.168.100.10 //根据实际情况修改</span><br><span class="line">prefix=24</span><br><span class="line">gateway=192.168.100.1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改compute节点的网络配置:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onboot=yes </span><br><span class="line">ipaddr=192.168.100.20 //根据实际情况修改</span><br><span class="line">prefix=24</span><br><span class="line">gateway=192.168.100.1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改controller节点主机名<code>hostnamectl set-hostname controller</code> </p>
+</li>
+<li>修改compute节点主机名<code>hostnamectl set-hostname compute</code></li>
+</ul>
+<p><strong>3. 配置controller节点和compute节点的yum仓库</strong></p>
+<ul>
+<li><p>删除centos自带的yum仓库 <code>rm -rf /etc/yum.repos.d/Cent-*</code></p>
+</li>
+<li><p>配置controller节点的yum仓库<code>vi /etc/yum.repos.d/iaas.repo</code></p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[centos]</span><br><span class="line">name=centos</span><br><span class="line">baseurl=file:///opt/centos</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line">[iaas]</span><br><span class="line">name=iaasXianDian-IaaS-v2.0-1228.iso   </span><br><span class="line">baseurl=file:///opt/iaas-repo/iaas-repo</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置compute节点的yum仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[centos]</span><br><span class="line"> name=centos</span><br><span class="line"> baseurl=ftp://192.168.100.10/centos</span><br><span class="line"> gpgcheck=0</span><br><span class="line"> </span><br><span class="line"> [iaas]</span><br><span class="line"> name=iaasXianDian-IaaS-v2.0-1228.iso   </span><br><span class="line"> baseurl=ftp://192.168.100.10iaas-repo/iaas-repo</span><br><span class="line"> gpgcheck=0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>挂载centos和iaas镜像文件</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/centos &amp;&amp; mkdir /opt/iaas-repo</span><br><span class="line">mount CentOS-7-x86_64-DVD-1511.iso /opt/centos</span><br><span class="line">mount XianDian-IaaS-v2.0-1228.iso /opt/iaas-repo</span><br></pre></td></tr></table></figure>
+<p> <img src="/images/mount.png" alt="挂载情况"></p>
+ <center>如图已经挂载好了centos和iaas镜像</center>
+</li>
+<li><p>controller节点安装ftp服务<code>yum install vsftpd -y</code></p>
+</li>
+<li><p>修改配置文件<code>echo &quot;anon_root=/opt/&quot; &gt;&gt; /etc/vsftpd/vsftpd.conf</code></p>
+</li>
+<li><p>开启ftp服务<code>systemctl start vsftpd</code></p>
+</li>
+<li><p>设置开机自启<code>systemctl enable vsftpd</code></p>
+</li>
+<li><p>关闭防火墙（在controller和compute都要执行）<code>systemctl stop firewalld</code></p>
+</li>
+<li><p>设置开机不自启（在controller和compute都要执行）<code>systemctl disable firewalld</code></p>
+</li>
+<li><p>验证yum仓库是否配置成功<code>yum list all</code></p>
+</li>
+</ul>
+<p><strong>4. 编辑iaas环境变量</strong></p>
+<ul>
+<li>controller和compute安装iaas-xiandian <code>yum install iaas-xiandian -y</code></li>
+</ul>
+<ul>
+<li><p>编辑/etc/xiandian/openrc.sh(注：根据自己实际情况来修改)</p>
+</li>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">HOST_IP=192.168.100.10</span><br><span class="line">HOST_NAME=controller</span><br><span class="line">HOST_IP_NODE=192.168.100.20</span><br><span class="line">HOST_NAME_NODE=compute</span><br><span class="line">RABBIT_USER=openstack</span><br><span class="line">RABBIT_PASS=000000</span><br><span class="line">DB_PASS=000000</span><br><span class="line">DOMAIN_NAME=demo  //自定义</span><br><span class="line">ADMIN_PASS=000000</span><br><span class="line">DEMO_PASS=000000</span><br><span class="line">KEYSTONE_DBPASS=000000</span><br><span class="line">GLANCE_DBPASS=000000</span><br><span class="line">GLANCE_PASS=000000</span><br><span class="line">NOVA_DBPASS=000000</span><br><span class="line">NOVA_PASS=000000</span><br><span class="line">NEUTRON_DBPASS=000000</span><br><span class="line">NEUTRON_PASS=000000</span><br><span class="line">METADATA_SECRET=000000</span><br><span class="line">INTERFACE_NAME=enp3s0f1 //本机外网网卡名</span><br><span class="line">CINDER_DBPASS=000000</span><br><span class="line">CINDER_PASS=000000</span><br><span class="line">TROVE_DBPASS=000000</span><br><span class="line">TROVE_PASS=000000</span><br><span class="line">BLOCK_DISK=md126p4  //compute节点的cinder分区</span><br><span class="line">SWIFT_PASS=000000</span><br><span class="line">OBJECT_DISK=md126p5  //compute节点的swift分区 </span><br><span class="line">STORAGE_LOCAL_NET_IP=192.168.100.20 //compute的内网IP</span><br><span class="line">HEAT_DBPASS=000000</span><br><span class="line">HEAT_PASS=000000</span><br><span class="line">CEILOMETER_DBPASS=000000</span><br><span class="line">CEILOMETER_PASS=000000</span><br><span class="line">AODH_DBPASS=000000</span><br><span class="line">AODH_PASS=000000</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>修改完成后去掉参数前的注释，此外还有一个需要注意的地方</p>
+</li>
+<li><p>min和max无需修改，也不用去掉注释</p>
+</li>
+</ul>
+<p><img src="/images/openrc.png" alt="openrc"></p>
+<ul>
+<li><p>controller节点修改完openrc.sh之后可以直接scp到compute节点</p>
+<p><code>scp  /etc/xiandian/openrc.sh 192.168.100.20:/etc/xiandian/</code> </p>
+</li>
+<li><p>复制过去之后还要修改一下compute节点openrc.sh</p>
+<p><code>INTERFACE_NAME=enp9s0</code></p>
+<p>使用<code>ifconfig</code>命令查看外网网卡名称</p>
+<p><img src="/images/ifconfig.png" alt="ifconfig"></p>
+<center>如图可知enp3s0f1为外网网卡</center>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>刷脚本ing~~</li>
+</ol>
+<ul>
+<li><p>两个节点都执行<code>iaas-pre-host.sh</code></p>
+<p>脚本执行结束后会提示重启</p>
+<p>在两个节点都结束后同时重启<code>reboot</code></p>
+</li>
+<li><p>controller通过脚本安装内容如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iaas-install-mysql.sh //mysql包</span><br><span class="line">iaas-install-keystone.sh //keystone服务</span><br><span class="line">iaas-install-glance.sh //glance包</span><br><span class="line">iaas-install-nova-controller.sh  //nova服务</span><br><span class="line">iaas-install-neutron-controller.sh //neutron服务</span><br><span class="line">iaas-install-neutron-controller-gre.sh  //创建gre网络</span><br><span class="line">iaas-install-dashboard.sh //安装Dashboard服务</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>compute节点通过脚本安装内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iaas-install-nova-compute.sh //nova服务</span><br><span class="line">iaas-install-neutron-compute.sh //neutron服务</span><br><span class="line">iaas-install-neutron-compute-gre.sh //创建gre网络</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="6">
+<li><p>完成上述所有操作之后可以用浏览器访问controller的内网ip</p>
+<p>例如<code>192.168.100.10/dashboard</code></p>
+</li>
+</ol>
+<p><img src="/images/Dashboard.png" alt="Dashboard"></p>
+<ol start="7">
+<li><p>上传镜像</p>
+<p><code>source /etc/keystone/admin-openrc.sh</code> source这个脚本</p>
+<p><code>glance image-create --name &quot;CentOS7&quot; --disk-format qcow2 --container-format bare --progress &lt; /opt/iaas-repo/images/CentOS_7.2_x86_64_XD.qcow2</code> 上传镜像</p>
+</li>
+</ol>
+<ul>
+<li>image-create //创建镜像 –name “xx” 名字为xx</li>
+<li>disk-format //镜像格式</li>
+<li>container-format //容器格式 默认为bare</li>
+<li>progress //显示上传进度 </li>
+</ul>
+<hr>
+<p>​    <center>如果觉得这篇文章对你有帮助的话可以收藏我的博客哦</center></p>
+<p>​    <center>也欢迎一起交流学习</center></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-16T05:01:54.054Z" itemprop="dateUpdated">2019-03-16 13:01:54</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/logo.png" alt="柚木舟">
+            柚木舟
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云平台/">云平台</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/01/Iass-搭建/&title=《Iass 搭建》 — 随记&pic=http://yoursite.com/img/logo.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/01/Iass-搭建/&title=《Iass 搭建》 — 随记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/01/Iass-搭建/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Iass 搭建》 — 随记&url=http://yoursite.com/2019/03/01/Iass-搭建/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/01/Iass-搭建/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/03/Hasse-k680e-g6d1黑苹果安装记录/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Hasse k680e g6d1黑苹果安装记录</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/01/DiskPart/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">DiskPart</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>柚木舟 &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/01/Iass-搭建/&title=《Iass 搭建》 — 随记&pic=http://yoursite.com/img/logo.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/01/Iass-搭建/&title=《Iass 搭建》 — 随记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/01/Iass-搭建/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Iass 搭建》 — 随记&url=http://yoursite.com/2019/03/01/Iass-搭建/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/01/Iass-搭建/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2019/03/01/Iass-搭建/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
