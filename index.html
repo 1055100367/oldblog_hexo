@@ -13,13 +13,11 @@
     
     
     
-    <link rel="canonical" href="https://zhboat.github.io/">
-    
     
     <title>随记</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
     
     
     <meta name="keywords" content>
@@ -31,7 +29,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随记">
     
-    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="shortcut icon" href="/">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
@@ -48,54 +46,19 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/logo.png">
+          <img src="/">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">柚木舟</h5>
-          <a href="mailto:zhboat@163.com" title="zhboat@163.com" class="mail">zhboat@163.com</a>
-        </hgroup>
+          <a href="mailto:undefined" class="mail">
+        </a></hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
-        
-            <li class="waves-block waves-effect active">
-              <a href="/">
-                <i class="icon icon-lg icon-home"></i>
-                Home
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives">
-                <i class="icon icon-lg icon-archives"></i>
-                Archives
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="http://www.weibo.com/6116597460" target="_blank">
-                <i class="icon icon-lg icon-weibo"></i>
-                Weibo
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/zhboatß" target="_blank">
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/About">
-                <i class="icon icon-lg icon-terminal"></i>
-                About
-              </a>
-            </li>
         
       </ul>
     </div>
@@ -110,20 +73,6 @@
         </a>
         <div class="flex-col header-title ellipsis">随记</div>
         
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
         
     </div>
 </header>
@@ -174,24 +123,7 @@
 
     
         任务二、IaaS云平台运维Rabbitmq简单题
-按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。
-云主机： 
-
-名称：IaaS
-
-镜像文件：Xiandian-IaaS-All.qcow2
-
-云主机类型：4cpu、8G内存、100G硬盘
-
-网络：网络1：int-net1，绑定浮动IP
-
-网络2：int-net2
-
-
-
-
-
-​    ...
+按以...
     
 
         <a href="/云平台运维二/" class="post-more waves-effect waves-button">
@@ -237,14 +169,7 @@
     
         
 任务一、IaaS云平台搭建基础环境
-使用命令行方式设置主机名，防火墙以及SELinux设置如下：
-
-设置控制节点主机名controller；计算节点主机名：compute。
-
-各个节点关闭防火墙，设置开机不启动。
-
-设置各个节点selinux状态为permissive。
-hostnamectl set-hostname controller设置控制节...
+使用命令行方式设...
     
 
         <a href="/云平台运维/" class="post-more waves-effect waves-button">
@@ -289,19 +214,7 @@ hostnamectl set-hostname controller设置控制节...
 
     
         
-​    根据云平台搭建我们已经知道了如何在服务器上搭建云平台，也已经通过controller内网访问了云平台网页操作界面，此时我们就可以通过云平台来创建云主机了
-
-
-云主机类型
-删除自带所有云主机类型
-新建一个云主机类型
-名称自定义
-根据实际情况划分VCPU
-根据实际情况划分RAM
-根据实际情况划分磁盘
-例如：
-                
- ...
+​    根据云平台搭建我们已经知道了如何在服务器上...
     
 
         <a href="/云平台-创建云主机/" class="post-more waves-effect waves-button">
@@ -345,18 +258,7 @@ hostnamectl set-hostname controller设置控制节...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        输出print (&#39;Hello World&#39;)
-定义变量
-x=&#39;Hello World&#39;
-输出print(x)
-得出结果Hello World
-标识符_ 
-例如_test=&quot;Hello World&quot;
-输出print(_test)
-得出结果Hello World
-导入包
-import keyword
-i...
+        输出print (&#39;Hello World&#...
     
 
         <a href="/python-one-day/" class="post-more waves-effect waves-button">
@@ -405,37 +307,7 @@ i...
 
 CPU:i5-7400
 
-GPU:hd630
-
-支持亮度调节
-
-GTX1050Ti
-
-
-
-声卡:alc269vc
-
-万能声卡
-
-
-有线网卡
-
-无线WiFi（某宝买个USB网卡就行了）
-
-蓝牙Intel内置的不能隔空投送
-
-VGA&amp;HDMI显示屏核显输出
-
-电量
-
-触摸板
-
-不知道还有些啥，，一时间想不起来了
-
-
-
-
-已知问题...
+GPU:...
     
 
         <a href="/Hasse-k680e-g6d1黑苹果安装记录/" class="post-more waves-effect waves-button">
@@ -479,15 +351,7 @@ VGA&amp;HDMI显示屏核显输出
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Iaas 云平台搭建详解1. 给compute节点分区：
-
-parted /dev/md126
-
-(parted) mkpart cinder xxG xxG //xx为从多少G开始划分，例如：100G 200G 。100G足矣
-
-(parted) mkpart swift xxG xxG //可以接着cinder的200G
-
-(parted) p /...
+        Iaas 云平台搭建详解1. 给compute节点分区...
     
 
         <a href="/Iass-搭建/" class="post-more waves-effect waves-button">
@@ -533,14 +397,7 @@ parted /dev/md126
     
         关于Windows下Diskpart的操作
 
-List disk :显示磁盘
-List partition :显示分区
-Select disk :选择磁盘
-Select partition :选择分区
-Remove letter=“盘符”
-
-–
-
+List...
     
 
         <a href="/DiskPart/" class="post-more waves-effect waves-button">
@@ -566,7 +423,7 @@ Remove letter=“盘符”
 
         <footer class="footer">
     <div class="bottom">
-        <p><span>柚木舟 &copy; 2018 - 2019</span>
+        <p><span>柚木舟 &copy; 2019</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -579,80 +436,14 @@ Remove letter=“盘符”
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/&title=随记&pic=http://yoursite.com/img/logo.png" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/&title=随记&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=随记&url=http://yoursite.com/&via=http://yoursite.com" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/" alt="微信分享二维码">
-</div>
-
-
-
-
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
 
 </script>
 
 <script src="/js/main.min.js?v=1.7.2"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 
