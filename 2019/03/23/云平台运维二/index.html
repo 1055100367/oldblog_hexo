@@ -23,13 +23,13 @@
     
     
     <meta name="keywords" content="Linux,云平台,OpenStack">
-    <meta name="description" content="任务二、IaaS云平台运维  Rabbitmq简单题  按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用">
+    <meta name="description" content="任务二、IaaS云平台运维Rabbitmq简单题 按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用的组件">
 <meta name="keywords" content="Linux,云平台,OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="云平台运维二">
 <meta property="og:url" content="http://yoursite.com/2019/03/23/云平台运维二/index.html">
 <meta property="og:site_name" content="随记">
-<meta property="og:description" content="任务二、IaaS云平台运维  Rabbitmq简单题  按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用">
+<meta property="og:description" content="任务二、IaaS云平台运维Rabbitmq简单题 按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用的组件">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14tv58sr0j30ue0k6gol.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g14um788owj30pc0gsq9g.jpg">
@@ -65,10 +65,11 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g1duoiwu3uj30ru0jwqc3.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1duu4rpyjj30ru0jwzu6.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1duvd28udj30ru0jwdpr.jpg">
-<meta property="og:updated_time" content="2019-03-24T06:14:51.067Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006FWCpKgy1g1hblobwiyj30xy0nqnat.jpg">
+<meta property="og:updated_time" content="2019-03-27T06:35:49.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="云平台运维二">
-<meta name="twitter:description" content="任务二、IaaS云平台运维  Rabbitmq简单题  按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用">
+<meta name="twitter:description" content="任务二、IaaS云平台运维Rabbitmq简单题 按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用的组件">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14tv58sr0j30ue0k6gol.jpg">
     
     <link rel="shortcut icon" href="/img/favicon.png">
@@ -190,6 +191,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#任务二、IaaS云平台运维"><span class="post-toc-number">1.</span> <span class="post-toc-text">任务二、IaaS云平台运维</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Rabbitmq简单题"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Rabbitmq简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Rabbitmq困难题"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Rabbitmq困难题**</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mysql简单题"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Mysql简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MySQL困难题"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">MySQL困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MongoDB运维"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">MongoDB运维</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone简单题"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">Keystone简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone-困难题"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">Keystone 困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Glance简单题"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">Glance简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Glance困难题"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">Glance困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nova简单题"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">Nova简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nova困难题"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">Nova困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Libvirt题"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">Libvirt题</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-云平台运维二" class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -202,17 +210,10 @@
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p><strong>任务二、IaaS云平台运维</strong></p>
-<ol>
-<li><p><strong>Rabbitmq简单题</strong></p>
-<ul>
+            <h1 id="任务二、IaaS云平台运维"><a href="#任务二、IaaS云平台运维" class="headerlink" title="任务二、IaaS云平台运维"></a>任务二、IaaS云平台运维</h1><h2 id="Rabbitmq简单题"><a href="#Rabbitmq简单题" class="headerlink" title="Rabbitmq简单题"></a>Rabbitmq简单题</h2><ul>
 <li><p>按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。</p>
 <p>云主机： </p>
 <ul>
@@ -253,9 +254,7 @@
 </li>
 </ul>
 <hr>
-</li>
-<li><p>Rabbitmq困难题**</p>
-<ul>
+<h2 id="Rabbitmq困难题"><a href="#Rabbitmq困难题" class="headerlink" title="Rabbitmq困难题**"></a>Rabbitmq困难题**</h2><ul>
 <li><p>使用命令给xiandian-admin用户创建administrator角色，并查询，将以上所有操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
 <p><code>rabbitmqctl set_user_tags xiandian-admin amdinistrator</code>设置xiandian-admin用户为administrator</p>
 <p><code>rabbitmqctl list_users</code>查询所有用户</p>
@@ -277,9 +276,7 @@
 </li>
 </ul>
 <hr>
-</li>
-<li><p><strong>Mysql简单题</strong></p>
-<ul>
+<h2 id="Mysql简单题"><a href="#Mysql简单题" class="headerlink" title="Mysql简单题"></a>Mysql简单题</h2><ul>
 <li><p>使用数据库的相关命令查询数据库的编码方式，将查询结果以文本形式提交到答题框中。</p>
 <p><code>show variables like &#39;character%&#39;;</code>查看数据库编码方式</p>
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14t3lx2y5j30pc0gsq9w.jpg" alt></p>
@@ -299,9 +296,7 @@
 </li>
 </ul>
 <hr>
-</li>
-<li><p>MySQL困难题**</p>
-<ul>
+<h2 id="MySQL困难题"><a href="#MySQL困难题" class="headerlink" title="MySQL困难题"></a>MySQL困难题</h2><ul>
 <li><p>进入数据库keystone，通过user表和local_user表做联合更新，u用来做user表别名，lu用来做local_user表别名，sql语句更新neutron用户的enabled状态为0, 更新语句中user表在local_user前面。 将sql语句，以文本形式提交到答题框。</p>
 <p><code>use keystone;</code>使用keystone库</p>
 <p><code>select enabled from user as u,local_user as lu where u.id=lu.user_id and lu.name=&quot;neutron&quot;;</code>user表取别名u,local_user取别名lu,联合查询user表和local_user表的neutron用户enabled状态</p>
@@ -327,11 +322,8 @@
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g173shvaxej30ru0jwwoa.jpg" alt></p>
 </li>
 </ul>
-</li>
-</ol>
 <hr>
-<ol start="5">
-<li><strong>MongoDB运维</strong><ul>
+<h2 id="MongoDB运维"><a href="#MongoDB运维" class="headerlink" title="MongoDB运维"></a>MongoDB运维</h2><ul>
 <li>登录 iaas 云主机，登录 MongoDB 数据库，查看数据库，使用 ceilometer数据库，查看此数据库下的集合，并查询此数据库用户，最后创建一个数据库并查询。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
 <li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据，最后查询特定的一类数据。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
 <li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中插入数据，插入完毕后，数据进行修改，修改完后，查询修改完的数据。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
@@ -340,12 +332,8 @@
 <li>登录 iaas 云主机，登录 MongoDB 数据库，新建一个数据库，使用这个数据库，向集合中批量插入多条数据，使用 for 循环，定义变量 i=1，插入”_id” : i，”name” : “xiaoming”， “age” : “21”。插入数据完毕后，统计集合中的数据条数，然后查询集合中满足特定条件的结果。将以上所有操作命令和返回结果以文本形式提交到答题框。</li>
 <li>登录 iaas 云主机，使用 mongoimport 命令，将给定的文件，导入至 MongoDB下的相应数据库中的指定集合中。导入后登录 MongoDB 数据库。查询集合中满足特的条件的结果。将上述所有操作命令及返回结果以文本形式提交到答题框。注：PPG–场均得分；PTS–总得分；FG%–投篮命中率；3P%–三分命中率；MPG–平均上场时间</li>
 </ul>
-</li>
-</ol>
 <hr>
-<ol start="6">
-<li><p><strong>Keystone简单题</strong></p>
-<ul>
+<h2 id="Keystone简单题"><a href="#Keystone简单题" class="headerlink" title="Keystone简单题"></a>Keystone简单题</h2><ul>
 <li><p>在keystone中创建用户testuser，密码为password，以文本形式提交以上操作命令到答题框。</p>
 <p><code>source /etc/keystone/admin-openrc.sh</code></p>
 <p><code>openstack user create --domain xiandian --password password testuser</code>创建用户testuser,密码为password</p>
@@ -369,12 +357,8 @@
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdktx6hzj30ru0j7n63.jpg" alt></p>
 </li>
 </ul>
-</li>
-</ol>
 <hr>
-<ol start="7">
-<li><p><strong>Keystone 困难题</strong></p>
-<ul>
+<h2 id="Keystone-困难题"><a href="#Keystone-困难题" class="headerlink" title="Keystone 困难题"></a>Keystone 困难题</h2><ul>
 <li><p>在keystone中创建用户testuser，密码为password，创建好之后，使用命令修改testuser密码为000000，并查看testuser的详细信息，以文本形式提交以上操作命令到答题框。</p>
 <p><code>openstack user create --domain xiandian -password password testuser</code>创建用户testuser,密码为password</p>
 <p><code>openstack user set --password 000000 testuser</code>修改testuser用户的密码为000000</p>
@@ -388,12 +372,8 @@
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bdyjux1zj30ru0j77c4.jpg" alt></p>
 </li>
 </ul>
-</li>
-</ol>
 <hr>
-<ol start="8">
-<li><p><strong>Glance简单题</strong></p>
-<ul>
+<h2 id="Glance简单题"><a href="#Glance简单题" class="headerlink" title="Glance简单题"></a>Glance简单题</h2><ul>
 <li><p>使用glance相关命令上传<a href="https://pan.baidu.com/s/1KQDG9Z46DU21Ja0r3iX5eg" target="_blank" rel="noopener">CentOS_6.5_x86_64_XD.qcow2</a>镜像到云主机中，镜像名为testone，然后使用openstack相关命令，并查看镜像的详细信息，将命令与返回结果提交到答题框。</p>
 <p><code>glance image-create --name &#39;testone&#39; --disk-format qcow2 --container-format bare --progress &lt; /opt/iaas-repo/image/CentOS_6.5_x86_64_XD.qcow2</code>上传镜像CentOS_6.5,镜像名为testone</p>
 <p><code>openstack image show testone</code> 使用openstack image show 查看刚刚创建的testone镜像详情</p>
@@ -418,12 +398,8 @@
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bm5qqyvbj310p0obtlq.jpg" alt></p>
 </li>
 </ul>
-</li>
-</ol>
 <hr>
-<ol start="9">
-<li><p><strong>Glance困难题</strong></p>
-<ul>
+<h2 id="Glance困难题"><a href="#Glance困难题" class="headerlink" title="Glance困难题"></a>Glance困难题</h2><ul>
 <li><p>通过一条组合命令获取镜像列表信息，该组合命令包含：</p>
 <ul>
 <li><p>使用curl命令获取镜像列表信息；</p>
@@ -497,12 +473,8 @@
 
 </li>
 </ul>
-</li>
-</ol>
 <hr>
-<ol start="10">
-<li><p><strong>Nova简单题</strong></p>
-<ul>
+<h2 id="Nova简单题"><a href="#Nova简单题" class="headerlink" title="Nova简单题"></a>Nova简单题</h2><ul>
 <li><p>修改云平台中默认每个tenant的实例注入文件大小配额为20480字节，在答题框填入该命令，查询修改后的默认配额信息并以文本形式提交到答题框。</p>
 <p><code>nova quota-class-show default</code>查看默认配额信息</p>
 <p><code>nova quota-class-update --injected-content-bytes 20480 default</code>修改每个tenant大小配额为20480字节</p>
@@ -528,12 +500,8 @@
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqkix8awj312j0p04d5.jpg" alt></p>
 </li>
 </ul>
-</li>
-</ol>
 <hr>
-<ol start="11">
-<li><p><strong>Nova困难题</strong></p>
-<ul>
+<h2 id="Nova困难题"><a href="#Nova困难题" class="headerlink" title="Nova困难题"></a>Nova困难题</h2><ul>
 <li><p>使用grep命令配合-v参数控制节点/etc/nova/nova.conf文件中有效的命令行覆盖输出到/etc/novaback.conf文件，将该命令连同cat备份后文件打印出来的信息提交到答题框中。</p>
 <p><code>grep -v &quot;^$&quot; /etc/nova/nova.conf | grep -v ^[#] &gt; /etc/nova/novaback.conf</code></p>
 <ul>
@@ -557,16 +525,14 @@
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1duvd28udj30ru0jwdpr.jpg" alt></p>
 </li>
 </ul>
-</li>
-</ol>
 <hr>
-<ol start="12">
-<li><p>Cinder简单题</p>
-<ul>
-<li>使用fdisk分区工具，对/dev/vda进行分区，创建一个分区，大小为20G，使用“pvcreate”命令将刚创建的分区创建为物理卷，然后使用命令查看物理卷信息。以文本形式在答题框按顺序输入操作命令及反馈结果。</li>
-</ul>
+<h2 id="Libvirt题"><a href="#Libvirt题" class="headerlink" title="Libvirt题"></a>Libvirt题</h2><ul>
+<li><p>在物理云平台查询云主机IaaS在KVM中的真实实例名，在计算节点使用virsh命令找到该实例名对应的domain-id，使用该domain-id关闭云主机IaaS，将以上所有操作命令及结果提交到答题框。</p>
+<p><code>nova list</code>查看nova列表</p>
+<p><code>nova show iaas</code>查看iaas详情</p>
+<p><img src="https://ws1.sinaimg.cn/large/006FWCpKgy1g1hblobwiyj30xy0nqnat.jpg" alt></p>
 </li>
-</ol>
+</ul>
 
         </div>
 
@@ -575,7 +541,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-24T06:14:51.067Z" itemprop="dateUpdated">2019-03-24 14:14:51</time>
+    最后更新时间：<time datetime="2019-03-27T06:35:49.426Z" itemprop="dateUpdated">2019-03-27 14:35:49</time>
 </span><br>
 
 
@@ -810,8 +776,6 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
