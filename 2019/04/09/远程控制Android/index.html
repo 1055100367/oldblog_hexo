@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhboat.github.io/2019/04/09/远程控制Android/">
+    
+    
+    <title>Mac连接Android | 随记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android,SSH,Scrcpy">
+    <meta name="description" content="今日闲着没事干把一个老安卓设备翻出来折腾…. 远程软件使用开源项目scrcpy 需要Android API&amp;gt;=21 需要开启ADB                                                                                                            安装ScrcpyWindows去Releases">
+<meta name="keywords" content="Android,SSH,Scrcpy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac连接Android">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/远程控制Android/index.html">
+<meta property="og:site_name" content="随记">
+<meta property="og:description" content="今日闲着没事干把一个老安卓设备翻出来折腾…. 远程软件使用开源项目scrcpy 需要Android API&amp;gt;=21 需要开启ADB                                                                                                            安装ScrcpyWindows去Releases">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac229d6e566.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac338b73685.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac30e8c6ff9.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac3bce548f9.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac3c21eedcd.jpg">
+<meta property="og:updated_time" content="2019-04-09T06:32:47.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac连接Android">
+<meta name="twitter:description" content="今日闲着没事干把一个老安卓设备翻出来折腾…. 远程软件使用开源项目scrcpy 需要Android API&amp;gt;=21 需要开启ADB                                                                                                            安装ScrcpyWindows去Releases">
+<meta name="twitter:image" content="https://i.loli.net/2019/04/09/5cac229d6e566.jpg">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">柚木舟</h5>
+          <a href="mailto:zhboat@163.com" title="zhboat@163.com" class="mail">zhboat@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6116597460" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhboat" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/About">
+                <i class="icon icon-lg icon-terminal"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Mac连接Android</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Mac连接Android</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-09T04:33:02.000Z" itemprop="datePublished" class="page-time">
+  2019-04-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#远程"><span class="post-toc-number">1.</span> <span class="post-toc-text">远程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装Scrcpy"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装Scrcpy</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">Windows</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">Linux</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MacOS"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">MacOS</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装ADB-参考xda帖子"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">安装ADB(参考xda帖子)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows-1"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">Windows</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux-1"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">Linux</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MacOS-1"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">MacOS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Q-amp-A"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">Q&amp;A</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SSH"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">SSH</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-远程控制Android" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Mac连接Android</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-09 12:33:02" datetime="2019-04-09T04:33:02.000Z" itemprop="datePublished">2019-04-09</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>今日闲着没事干把一个老安卓设备翻出来折腾….</p>
+<h1 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h1><p>软件使用开源项目<a href="https://github.com/Genymobile/scrcpy" target="_blank" rel="noopener">scrcpy</a></p>
+<p>需要Android API&gt;=21</p>
+<p>需要开启ADB</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2019/04/09/5cac229d6e566.jpg" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="安装Scrcpy"><a href="#安装Scrcpy" class="headerlink" title="安装Scrcpy"></a>安装Scrcpy</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>去<a href="https://github.com/Genymobile/scrcpy/releases" target="_blank" rel="noopener">Releases</a>下载对应版本解压就vans了</p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a><del>Linux</del></h3><p><a href="https://github.com/Genymobile/scrcpy#linux" target="_blank" rel="noopener">wiki</a>有说咋安装,因为本人没实践过,所以就在此就不写出来了</p>
+<h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><p><code>brew install scrcpy</code></p>
+<p>如果安装时出现如下信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">🍺  /usr/local/Cellar/sqlite/3.27.2: 11 files, 3.7MB</span><br><span class="line">==&gt; Installing scrcpy dependency: python</span><br><span class="line">Warning: Building python from source:</span><br><span class="line">  The bottle needs the Apple Command Line Tools to be installed.</span><br><span class="line">  You can install them, if desired, with:</span><br><span class="line">    xcode-select --install</span><br><span class="line"></span><br><span class="line">xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun</span><br></pre></td></tr></table></figure>
+<p>则执行<code>xcode-select —install</code>后重新安装</p>
+<p>运行scrcpy</p>
+<p>在已连接(USB/Wi-Fi)Android后执行<code>scrcpy</code>即可控制安卓设备</p>
+<h2 id="安装ADB-参考xda帖子"><a href="#安装ADB-参考xda帖子" class="headerlink" title="安装ADB(参考xda帖子)"></a>安装ADB(参考<a href="https://www.xda-developers.com/install-adb-windows-macos-linux/" target="_blank" rel="noopener">xda帖子</a>)</h2><h3 id="Windows-1"><a href="#Windows-1" class="headerlink" title="Windows"></a>Windows</h3><p>下载<a href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip" target="_blank" rel="noopener">ADB</a>(需要”特殊”网络)</p>
+<p><a href="https://pan.baidu.com/s/1DTpK9EKjEIC8krdSIzWEkg" target="_blank" rel="noopener">度盘</a></p>
+<p>解压后使用powershell/cmd进入该文件目录,或在解压后的文件目录按住shift+右键在此打开命令行</p>
+<p>配置path的话把目录添加进PATH环境变量即可</p>
+<p>安卓设备开启USB调试,确认已连接安卓设备后<code>adb devices</code>即可看到设备信息</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2019/04/09/5cac338b73685.jpg" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2019/04/09/5cac30e8c6ff9.jpg" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="Linux-1"><a href="#Linux-1" class="headerlink" title="Linux"></a>Linux</h3><p>Debian系:<code>sudo apt install android-tools-adb -y</code></p>
+<p>Redhat系:<code>sudo yum install android-tools-adb -y</code></p>
+<p><del>Arch系</del>:去<a href="https://wiki.archlinux.org/index.php/Android_Debug_Bridge#Installation" target="_blank" rel="noopener">ArchWiki</a>叭ovo</p>
+<p>安卓设备开启USB调试,确认已连接安卓设备后<code>adb devices</code>即可看到设备信息</p>
+<h3 id="MacOS-1"><a href="#MacOS-1" class="headerlink" title="MacOS"></a>MacOS</h3><p><code>brew cask install android-platform-tools</code></p>
+<p>安卓设备开启USB调试,确认已连接安卓设备后<code>adb devices</code>即可看到设备信息</p>
+<h3 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h3><p>Q:command not found</p>
+<p>A:检查是否已安装adb<code>which adb</code>,检查环境变量是否配置</p>
+<p>Q:连上手机看不到设备</p>
+<p>A:检查USB调试是否开启,检查数据线连接是否正常,检查驱动是否正常安装,检查Vendor ID是否已添加到~/.android/adb_usb.ini里</p>
+<p>Q:@$Afghan^&amp;*@asfkh!^#&amp;!@​kdshfq@#&amp;^#%uiewf</p>
+<p>A:善用百度……</p>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>如果觉得单纯控制手机不爽的话,可以ssh到Android上<del>蹂躏机器人</del></p>
+<p>Android安装<a href="https://github.com/termux/termux-app" target="_blank" rel="noopener">termux</a>可在酷安/Google Play/F-Droid等平台下载</p>
+<p>进入终端后<code>apt update</code> <code>apt install sshd</code></p>
+<p>使用<code>passwd</code>修改当前用户登录密码</p>
+<p>使用<code>whoami</code>查看当前用户名</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2019/04/09/5cac3bce548f9.jpg" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>在已连接(USB/同一Wi-Fi)Android情况下<code>ssh username@ip -p 8022</code></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2019/04/09/5cac3c21eedcd.jpg" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<hr>
+<p>感觉写的杂乱无章的说= =</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-09T06:32:47.974Z" itemprop="dateUpdated">2019-04-09 14:32:47</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/logo.png" alt="柚木舟">
+            柚木舟
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSH/">SSH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrcpy/">Scrcpy</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/09/远程控制Android/&title=《Mac连接Android》 — 随记&pic=http://yoursite.com/img/logo.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/09/远程控制Android/&title=《Mac连接Android》 — 随记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/04/09/远程控制Android/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Mac连接Android》 — 随记&url=http://yoursite.com/2019/04/09/远程控制Android/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/04/09/远程控制Android/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/23/云平台运维二/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">云平台运维二</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "VQV1S2OENUl5oKFl5gf2UzG9-gzGzoHsz",
+            appKey: "2alxiojCxS6dSUL4Y5zE4Flz",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>柚木舟 &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/09/远程控制Android/&title=《Mac连接Android》 — 随记&pic=http://yoursite.com/img/logo.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/09/远程控制Android/&title=《Mac连接Android》 — 随记&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/04/09/远程控制Android/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Mac连接Android》 — 随记&url=http://yoursite.com/2019/04/09/远程控制Android/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/04/09/远程控制Android/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2019/04/09/远程控制Android/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '别走好嘛QAQ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'ようこそ~';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":100,"height":200},"mobile":{"show":true},"log":false});</script></body>
+</html>
