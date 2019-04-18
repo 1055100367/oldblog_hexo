@@ -66,7 +66,7 @@
 <meta property="og:image" content="http://yoursite.com/images/ScreenShot/屏幕快照%202019-03-11%20下午2.48.33.png">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14jjferbrj30ru0j7wmw.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKly1g14jlmupj3j30ru0j711r.jpg">
-<meta property="og:updated_time" content="2019-03-27T06:30:15.360Z">
+<meta property="og:updated_time" content="2019-04-18T05:38:23.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="云平台运维">
 <meta name="twitter:description" content="任务一、IaaS云平台搭建基础环境 使用命令行方式设置主机名，防火墙以及SELinux设置如下：  设置控制节点主机名controller；计算节点主机名：compute。  各个节点关闭防火墙，设置开机不启动。  设置各个节点selinux状态为permissive。 hostnamectl set-hostname controller设置控制节点主机名 hostnamectl set-ho">
@@ -456,7 +456,9 @@
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKly1g14jjferbrj30ru0j7wmw.jpg" alt></p>
 </li>
 <li><p>在控制节点查询所有数据的版本信息，完成后查询mysql数据库的详细信息，将以上操作命令及结果填入答题框。</p>
-<p><code>trove datastore-list</code>查询mysql详细信息</p>
+<p><code>trove datastore-list</code>查询mysql信息</p>
+<p><code>trove datastore-version-list mysql</code>查看mysql镜像的版本信息</p>
+<p><code>trove datastore-version-show 4baf72bb-f660-4f68-9c46-2e53f55ad9c2</code>查看mysql镜像的版本详情</p>
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKly1g14jlmupj3j30ru0j711r.jpg" alt></p>
 </li>
 </ul>
@@ -469,7 +471,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-27T06:30:15.360Z" itemprop="dateUpdated">2019-03-27 14:30:15</time>
+    最后更新时间：<time datetime="2019-04-18T05:38:23.842Z" itemprop="dateUpdated">2019-04-18 13:38:23</time>
 </span><br>
 
 

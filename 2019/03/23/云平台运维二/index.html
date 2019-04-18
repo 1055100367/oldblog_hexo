@@ -66,7 +66,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1duu4rpyjj30ru0jwzu6.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1duvd28udj30ru0jwdpr.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006FWCpKgy1g1hblobwiyj30xy0nqnat.jpg">
-<meta property="og:updated_time" content="2019-03-27T06:35:49.426Z">
+<meta property="og:updated_time" content="2019-04-18T05:38:41.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="云平台运维二">
 <meta name="twitter:description" content="任务二、IaaS云平台运维Rabbitmq简单题 按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用的组件">
@@ -201,7 +201,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#任务二、IaaS云平台运维"><span class="post-toc-number">1.</span> <span class="post-toc-text">任务二、IaaS云平台运维</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Rabbitmq简单题"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Rabbitmq简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Rabbitmq困难题"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Rabbitmq困难题**</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mysql简单题"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Mysql简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MySQL困难题"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">MySQL困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MongoDB运维"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">MongoDB运维</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone简单题"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">Keystone简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone-困难题"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">Keystone 困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Glance简单题"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">Glance简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Glance困难题"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">Glance困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nova简单题"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">Nova简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nova困难题"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">Nova困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Libvirt题"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">Libvirt题</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#任务二、IaaS云平台运维"><span class="post-toc-number">1.</span> <span class="post-toc-text">任务二、IaaS云平台运维</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Rabbitmq简单题"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Rabbitmq简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Rabbitmq困难题"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Rabbitmq困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mysql简单题"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Mysql简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MySQL困难题"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">MySQL困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MongoDB运维"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">MongoDB运维</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone简单题"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">Keystone简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone-困难题"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">Keystone 困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Glance简单题"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">Glance简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Glance困难题"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">Glance困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nova简单题"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">Nova简单题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nova困难题"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">Nova困难题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Libvirt题"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">Libvirt题</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -265,7 +265,7 @@
 </li>
 </ul>
 <hr>
-<h2 id="Rabbitmq困难题"><a href="#Rabbitmq困难题" class="headerlink" title="Rabbitmq困难题**"></a>Rabbitmq困难题**</h2><ul>
+<h2 id="Rabbitmq困难题"><a href="#Rabbitmq困难题" class="headerlink" title="Rabbitmq困难题"></a>Rabbitmq困难题</h2><ul>
 <li><p>使用命令给xiandian-admin用户创建administrator角色，并查询，将以上所有操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
 <p><code>rabbitmqctl set_user_tags xiandian-admin amdinistrator</code>设置xiandian-admin用户为administrator</p>
 <p><code>rabbitmqctl list_users</code>查询所有用户</p>
@@ -552,7 +552,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-27T06:35:49.426Z" itemprop="dateUpdated">2019-03-27 14:35:49</time>
+    最后更新时间：<time datetime="2019-04-18T05:38:41.535Z" itemprop="dateUpdated">2019-04-18 13:38:41</time>
 </span><br>
 
 
