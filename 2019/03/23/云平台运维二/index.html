@@ -66,7 +66,10 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1duu4rpyjj30ru0jwzu6.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006FWCpKgy1g1duvd28udj30ru0jwdpr.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006FWCpKgy1g1hblobwiyj30xy0nqnat.jpg">
-<meta property="og:updated_time" content="2019-04-18T05:38:41.535Z">
+<meta property="og:image" content="https://i.loli.net/2019/04/18/5cb83510314ec.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/18/5cb836efd301b.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/18/5cb839075eb56.jpg">
+<meta property="og:updated_time" content="2019-04-18T08:45:36.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="云平台运维二">
 <meta name="twitter:description" content="任务二、IaaS云平台运维Rabbitmq简单题 按以下配置在云平台中创建云主机，完成本任务下的相关试题后关闭云主机。 云主机：   名称：IaaS  镜像文件：Xiandian-IaaS-All.qcow2  云主机类型：4cpu、8G内存、100G硬盘  网络：网络1：int-net1，绑定浮动IP  网络2：int-net2      ​    注：该镜像已安装IaaS平台所有可能使用的组件">
@@ -260,7 +263,7 @@
 <p><code>rabbitmqctl set_permissions xiandian-admin &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code>给xiandian-admin用户对本机所有资源的读写授权</p>
 </li>
 <li><p>使用rabbitmqctl命令查询集群状态，将操作命令及对应的反馈结果以文本形式提交到答题框中。</p>
-<p><code>rabbitmqctl cluster status</code>查询集群状态</p>
+<p><code>rabbitmqctl cluster_status</code>查询集群状态</p>
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g14undy4tgj30pc0gs0zc.jpg" alt></p>
 </li>
 </ul>
@@ -279,10 +282,10 @@
 <p><code>rabbitmqctl list_queues name arguments messages memory</code></p>
 </li>
 <li><p>通过修改配置文件的方式使memcache的缓存有64MB变为256MB，使用ps相关命令查询memcahce(笨比题目…..)进程的信息，将修改的配置文件全路径文件名、修改的参数以及相应的参数值、查询到的memcache进程信息以文本形式提交到答题框中。</p>
-<p><code>ps aux |grep memcache</code>查看没修改前的进程信息</p>
+<p><code>ps aux |grep memcached</code>查看没修改前的进程信息</p>
 <p><code>sed &#39;s/64/256/g&#39; /etc/sysconfig/memcached -i</code> 修改缓存为256</p>
-<p><code>cat /etc/sysconfig/memcache</code></p>
-<p><code>ps aux |grep memcache</code>查看修改后的进程信息</p>
+<p><code>cat /etc/sysconfig/memcached</code></p>
+<p><code>ps aux |grep memcached</code>查看修改后的进程信息</p>
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g16ywdf5dij310x08gq8w.jpg" alt></p>
 </li>
 </ul>
@@ -465,7 +468,7 @@
 <p><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bpfusyphj310p0p0anx.jpg" alt></p>
 </li>
 <li><p>查看glance配置文件，找到默认的镜像存储目录，进入到存储目录中，使用qemu命令查看任意的一个镜像，将操作命令和返回结果以文本形式提交到答题框。</p>
-<p><code>qemu-img info $(ll /var/lib/glance/images/ |awk &#39;NR==2{print $9}&#39;)</code></p>
+<p><code>qemu-img info $(ls /var/lib/glance/images/ |awk &#39;NR==2&#39;)</code></p>
 <ul>
 <li><font color="red">qemu-img info xxx查看xxx的镜像详情</font></li>
 <li><font color="red">ll /var/lib/glance/images列出改目录所有文件</font></li>
@@ -502,7 +505,7 @@
 </li>
 <li><p>修改云平台中默认每个tenant的实例配额为20个，在答题框填入该命令，查询修改后的默认配额信息并以文本形式提交到答题框。</p>
 <p><code>nova quota-class-show default</code>查看默认配额信息</p>
-<p><code>nova quota-class update --instances 20 default</code>修改tenant实例配额为20个</p>
+<p><code>nova quota-class-update --instances 20 default</code>修改tenant实例配额为20个</p>
 <p><code>nova quota-class-show default</code>查看更新后的默认配额信息<br><img src="http://ww1.sinaimg.cn/large/006FWCpKgy1g1bqim23h5j312j0p07in.jpg" alt></p>
 </li>
 <li><p>使用nova相关命令，查询nova所有的监控列表，并查看ID为1的监控主机的详细信息，将操作命令和返回结果以文本形式提交到答题框。</p>
@@ -542,8 +545,18 @@
 <p><code>nova list</code>查看nova列表</p>
 <p><code>nova show iaas</code>查看iaas详情</p>
 <p><img src="https://ws1.sinaimg.cn/large/006FWCpKgy1g1hblobwiyj30xy0nqnat.jpg" alt></p>
+<p>在compute节点上执行<code>virsh domid instance-00000005</code>得到domainID</p>
+<p><code>virsh shutdown 5</code>关闭domainID为5的实例</p>
+<p><img src="https://i.loli.net/2019/04/18/5cb83510314ec.jpg" alt></p>
+<p><code>nova list</code> 查看nova列表</p>
+<p><img src="https://i.loli.net/2019/04/18/5cb836efd301b.jpg" alt></p>
+</li>
+<li><p>在物理云平台查询云主机IaaS在KVM中的真实实例名，在计算节点使用virsh命令找到该实例名对应的domain-id，使用该domain-id重启云主机IaaS，将以上所有操作命令及结果提交到答题框。</p>
+<p><code>nova list</code>查看nova列表</p>
+<p><code>nova show iaas</code>查看iaas详情</p>
 </li>
 </ul>
+<p>  <img src="https://i.loli.net/2019/04/18/5cb839075eb56.jpg" alt></p>
 
         </div>
 
@@ -552,7 +565,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-18T05:38:41.535Z" itemprop="dateUpdated">2019-04-18 13:38:41</time>
+    最后更新时间：<time datetime="2019-04-18T08:45:36.773Z" itemprop="dateUpdated">2019-04-18 16:45:36</time>
 </span><br>
 
 
